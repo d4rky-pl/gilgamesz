@@ -6,17 +6,26 @@ class AdventuresController < ApplicationController
 
   def new
     @adventure = Adventure.new
-    gon.push adventure: @adventure
     render action: 'edit'
+    set_gon_attributes
+  end
+
+  def edit
+    @adventure = Adventure.find(params[:id])
+    set_gon_attributes
   end
 
   def show
     @adventure = Adventure.find(params[:id])
     @adventure.increment! :plays
-    gon.push adventure: @adventure
+    gon.push adventure: @adventure.content
   end
 
   private
+
+  def set_gon_attributes
+    gon.push game_types: Adventure.game_types.keys, adventure: @adventure.content
+  end
 
   def adventure_params
     params.require(:adventure).permit(:name, :description, :game_type, :content)

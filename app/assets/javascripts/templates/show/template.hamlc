@@ -1,0 +1,35 @@
+.container
+  .page-header
+    %h1= @game_name
+
+  .panel.panel-default
+    .panel-body
+      != @message
+
+      - if @type == 'add_item'
+        %h3 You've gained a new item!
+        .media
+          .pull-left
+            %img{src: @item.image}
+          .media-body
+            %h4.media-heading= @item.name
+            != @item.description
+
+      - if @type == 'use_item'
+        %h3 You've used an item.
+        .media
+          .pull-left
+            %img{src: @item.image}
+          .media-body
+            %h4.media-heading= @item.name
+            != @item.description
+
+      .list-group
+        - @actions.each (action) ->
+          %a.list-group-item{"data-node-id" => action.node_id}!= action.description
+
+  .well
+    %h3 Inventory
+    - @inventory.each (item) ->
+      .thumbnail{"data-toggle" => "popover", "data-trigger" => "focus", "title" => item.name, "data-content" => item.description}
+        %img{src: item.image}

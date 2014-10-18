@@ -3,19 +3,19 @@
     {
       "id": "passage-a63b6d00-8d5a-4d75-b0e1-dffeb15a74e5",
       "type": "passage",
-      "description": "You are standing in front of the door.",
+      "description": "<p>You are standing in front of the door.</p>",
       "actions": [
         {
           "node_id": "passage-b38c9b07-0146-45ab-9ef2-0291f19da433",
-          "description": "Try to open the door"
+          "description": "<p>Try to open the door</p>"
         },
         {
           "node_id": "passage-66ec970f-5f97-41c8-90cb-ad9d9f1d560a",
-          "description": "Look for a key"
+          "description": "<p>Look for a key</p>"
         },
         {
           "node_id": "gameover-e95a7185-f917-4d4e-bc93-9e29253ab974",
-          "description": "Lie down on the floor and die."
+          "description": "<p>Lie down on the floor and die.</p>"
         }
       ]
     },
@@ -28,29 +28,29 @@
 
       "events": {
         "use_item": {
-          "description": "You open a door using the key",
+          "description": "<p>You open a door using the key</p>",
           "actions": [
             {
               "node_id": "finish-b461338d-9543-4dc3-876a-6da82b374d24",
-              "description": "Step forward"
+              "description": "<p>Step forward</p>"
             }
           ]
         },
         "already_used_item": {
-          "description": "Door is open",
+          "description": "<p>Door is open</p>",
           "actions": [
             {
               "node_id": "finish-b461338d-9543-4dc3-876a-6da82b374d24",
-              "description": "Step forward"
+              "description": "<p>Step forward</p>"
             }
           ]
         },
         "no_item": {
-          "description": "You need a key to open this door.",
+          "description": "<p>You need a key to open this door.</p>",
           "actions": [
             {
               "node_id": "passage-a63b6d00-8d5a-4d75-b0e1-dffeb15a74e5",
-              "description": "Go back"
+              "description": "<p>Go back</p>"
             }
           ]
         }
@@ -63,11 +63,11 @@
 
       "events": {
         "add_item": {
-          "description": "You have found a key",
+          "description": "<p>You have found a key</p>",
           "actions": [
             {
               "node_id": "passage-a63b6d00-8d5a-4d75-b0e1-dffeb15a74e5",
-              "description": "Go back"
+              "description": "<p>Go back</p>"
             }
           ]
         }
@@ -76,12 +76,12 @@
     {
       "id": "gameover-e95a7185-f917-4d4e-bc93-9e29253ab974",
       "type": "gameover",
-      "description": "You are dead."
+      "description": "<p>You are dead.</p>"
     },
     {
       "id": "finish-b461338d-9543-4dc3-876a-6da82b374d24",
       "type": "finish",
-      "description": "You have finished the demo!"
+      "description": "<p>You have finished the demo!</p>"
     }
   ],
 
@@ -90,7 +90,7 @@
       "id": "item-2e751dc0-dffa-42ad-9e5b-c4f15a948e57",
       "image": "blank.gif",
       "name": "Door key",
-      "description": "Example key"
+      "description": "<p>Example key</p>"
     }
   ],
 
