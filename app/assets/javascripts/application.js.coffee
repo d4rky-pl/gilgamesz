@@ -7,6 +7,7 @@
 #= require hamlcoffee
 #= require assets_js
 #= require jit
+#= require bootbox
 #= require_tree ./templates
 #= require adventure
 #= require adventures

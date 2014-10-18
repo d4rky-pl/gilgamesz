@@ -1,0 +1,27 @@
+%table.table.table-striped
+  %thead
+    %tr
+      %td{colspan: 4} Existing items
+  %tbody
+    - @items.each (item) ->
+      %tr{ 'data-item-id' => item.id}
+        %td
+          %img{src: asset_path('items/' + item.image)}
+        %td= item.name
+        %td= item.description
+        %td
+          %a.btn.btn-xs.btn-danger{'data-action' => 'remove-item', 'data-item-id' => item.id}
+            %i.glyphicon.glyphicon-remove
+
+%form
+  .form-group
+    %label.control-label Name
+    %input.form-control{ type: 'text', name: 'name' }
+  .form-group
+    %label.control-label Description
+    %textarea.form-control{ type: 'text', name: 'description' }
+  .form-group
+    %label.control-label Image
+    %select.form-control{ class: 'selectpicker', name: 'image' }
+      - @available_images.each (image) ->
+        %option{value: image}= image

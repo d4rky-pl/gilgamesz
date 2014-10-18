@@ -24,10 +24,14 @@ class AdventuresController < ApplicationController
   private
 
   def set_gon_attributes
-    gon.push game_types: Adventure.game_types.keys, adventure: @adventure.content
+    gon.push adventure: @adventure.content, available_images: available_images
   end
 
   def adventure_params
     params.require(:adventure).permit(:name, :description, :game_type, :content)
+  end
+
+  def available_images
+    Dir.chdir(Rails.root.join('app','assets','images','items')) { Dir["*.*"] }
   end
 end

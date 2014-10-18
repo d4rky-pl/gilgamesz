@@ -18,6 +18,15 @@ body.adventures-show {
   }
 }
 
+body.adventures-edit,
+body.adventures-new {
+  #sidebar {
+    .tab-content {
+      margin-top: 10px
+    }
+  }
+}
+
 .table-games {
 
   .game-screen-icon {

@@ -124,7 +124,7 @@ class AdventureInventory
 
   remove: (id) ->
     item_index = @_itemIndex(id)
-    @inventory.delete item_index if item_index != -1
+    delete @inventory[item_index] if item_index != -1
 
   get: (id) ->
     item_index = @_itemIndex(id)
@@ -145,7 +145,6 @@ class AdventureInventory
         false
       else
         true
-
     item_index
 
 
