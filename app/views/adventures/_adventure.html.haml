@@ -17,12 +17,12 @@
         %p.game-counter
           Played
           %span
-            = adventure.plays
+            = pluralize(adventure.plays, 'time')
 
     .row
       .col-sm-12
         .text-center.game-actions
           = link_to "Play", adventure_path(adventure), class: "btn btn-success"
-          = link_to "Edit", "#", class: "btn btn-primary"
+          = link_to "Edit", edit_adventure_path(adventure), class: "btn btn-primary"
 
   = image_tag "http://www.theparanoidgamer.com/wp-content/uploads/2011/07/840935-tibia_super.jpg", class: "game-screen-icon"

@@ -1,5 +1,5 @@
-.container
-  %nav.navbar.navbar-default{:role => "navigation"}
+%nav.navbar.navbar-default.header{:role => "navigation"}
+  .container
     .container-fluid
       .navbar-header
         %button.navbar-toggle.collapsed{"data-target" => "#navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
@@ -12,3 +12,9 @@
         %ul.nav.navbar-nav.navbar-right
           %li
             = link_to "Create new game", new_adventure_path
+          %li
+            = link_to "Help", help_path
+          %li
+            find us on
+          %li
+            = link_to "Facebook", "#"
