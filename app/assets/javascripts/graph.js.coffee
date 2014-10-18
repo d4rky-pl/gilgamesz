@@ -1,106 +1,181 @@
 $(document).ready ->
   if $("#graph").length > 0
-    graph = new $jit.ST(
+    graphElement = new $jit.ForceDirected(
 
-      offsetX: $("#graph").width() / 2 - 100
-
-    #the number of levels to show for a subtree
-      levelsToShow: 100
-
-    #id of viz container element
+      #id of the visualization container
       injectInto: "graph"
 
-    #set duration for the animation
-      duration: 400
-
-    #set animation transition type
-      transition: $jit.Trans.Quart.easeInOut
-
-    #set distance between node and its children
-      levelDistance: 100
-
-    #enable panning
+    #Enable zooming and panning
+    #by scrolling and DnD
       Navigation:
         enable: true
-        panning: true
+
+      #Enable panning events only if we're dragging the empty
+      #canvas (and not a node).
+        panning: "avoid nodes"
+        zooming: 10 #zoom speed. higher is more sensible
 
 
-    #set node and edge styles
-    #set overridable=true for styling individual
-    #nodes or edges
+    # Change node and edge styles such as
+    # color and width.
+    # These properties are also set per node
+    # with dollar prefixed data-properties in the
+    # JSON structure.
       Node:
-        height: 34
-        autoWidth: true
-        type: "rectangle"
         overridable: true
-        color: '#fff'
 
       Edge:
-        type: "bezier"
         overridable: true
-
-      onBeforeCompute: (node) ->
-        console.log "loading " + node.name
-        return
-
-      onAfterCompute: ->
-        console.log "done"
-        return
+        color: "#23A4FF"
+        lineWidth: 0.4
 
 
-    #This method is called on DOM label creation.
-    #Use this method to add event handlers and styles to
-    #your node.
-      onCreateLabel: (label, node) ->
-        plus = "<span class='glyphicon glyphicon-plus'></span> New event"
-        buttonClass = `node.data.persisted ? 'primary' : 'default'`
-        label.id = node.id
-        label.innerHTML = "<div class='btn btn-" + buttonClass + "'>" + (node.name || plus) + "</div>"
-        label.onclick = ->
-          if node.data.url
-            window.location.assign(node.data.url)
+    #Native canvas text styling
+      Label:
+        type: "Native" #Native or HTML
+        size: 10
+        style: "bold"
+
+
+    #Add Tips
+      Tips:
+        enable: true
+        onShow: (tip, node) ->
+
+          #count connections
+          count = 0
+          node.eachAdjacency ->
+            count++
+            return
+
+
+          #display node info in tooltip
+          tip.innerHTML = "<div class=\"tip-title\">" + node.name + "</div>" + "<div class=\"tip-text\"><b>connections:</b> " + count + "</div>"
           return
 
-        #set label styles
-        style = label.style
-        style.cursor = "pointer"
-        style.background = "white"
+
+    # Add node events
+      Events:
+        enable: true
+        type: "Native"
+
+      #Change cursor style when hovering a node
+        onMouseEnter: ->
+          graphElement.canvas.getElement().style.cursor = "move"
+          return
+
+        onMouseLeave: ->
+          graphElement.canvas.getElement().style.cursor = ""
+          return
+
+
+      #Update node positions when dragged
+        onDragMove: (node, eventInfo, e) ->
+          pos = eventInfo.getPos()
+          node.pos.setc pos.x, pos.y
+          graphElement.plot()
+          return
+
+
+      #Implement the same handler for touchscreens
+        onTouchMove: (node, eventInfo, e) ->
+          $jit.util.event.stop e #stop default touchmove event
+          @onDragMove node, eventInfo, e
+          return
+
+
+      #Add also a click handler to nodes
+        onClick: (node) ->
+          return  unless node
+
+          # Build the right column relations list.
+          # This is done by traversing the clicked node connections.
+          html = "<h4>" + node.name + "</h4><b> connections:</b><ul><li>"
+          list = []
+          node.eachAdjacency (adj) ->
+            list.push adj.nodeTo.name
+            return
+
+
+          #append connections information
+          $jit.id("inner-details").innerHTML = html + list.join("</li><li>") + "</li></ul>"
+          return
+
+
+    #Number of iterations for the FD algorithm
+      iterations: 200
+
+    #Edge length
+      levelDistance: 80
+
+    # Add text to the labels. This method is only triggered
+    # on label creation and only for DOM labels (not native canvas ones).
+      onCreateLabel: (domElement, node) ->
+        domElement.innerHTML = node.name
+        style = domElement.style
+        style.fontSize = "0.8em"
+        style.color = "#ddd"
         return
 
 
-    #This method is called right before plotting
-    #a node. It's useful for changing an individual node
-    #style properties before plotting it.
-    #The data properties prefixed with a dollar
-    #sign will override the global node style properties.
-      onBeforePlotNode: (node) ->
-        return
-
-
-    #This method is called right before plotting
-    #an edge. It's useful for changing an individual edge
-    #style properties before plotting it.
-    #Edge data proprties prefixed with a dollar sign will
-    #override the Edge global style properties.
-      onBeforePlotLine: (adj) ->
-        if adj.nodeFrom.selected and adj.nodeTo.selected
-          adj.data.$color = "#eed"
-          adj.data.$lineWidth = 3
-        else
-          delete adj.data.$color
-
-          delete adj.data.$lineWidth
+    # Change node styles when DOM labels are placed
+    # or moved.
+      onPlaceLabel: (domElement, node) ->
+        style = domElement.style
+        left = parseInt(style.left)
+        top = parseInt(style.top)
+        w = domElement.offsetWidth
+        style.left = (left - w / 2) + "px"
+        style.top = (top + 10) + "px"
+        style.display = ""
         return
     )
 
-    #load json data
-    graph.loadJSON gon.adventure
+    # load JSON data.
+    graphElement.loadJSON new Graph(gon.adventure).nodes()
 
-    #compute node positions and layout
-    graph.compute()
+    # compute positions incrementally and animate.
+    graphElement.computeIncremental
+      iter: 40
+      property: "end"
+      onStep: (perc) ->
+        console.log perc + "% loaded..."
+        return
 
-    #optional: make a translation of the tree
-    graph.geom.translate new $jit.Complex(-200, 0), "current"
+      onComplete: ->
+        console.log "done"
+        graphElement.animate
+          modes: ["linear"]
+          transition: $jit.Trans.Elastic.easeOut
+          duration: 2500
 
-    #emulate a click on the root node.
-    graph.onClick graph.root
+        return
+
+class Graph
+  constructor: (@json) ->
+
+  nodes: ->
+    @json.nodes.map $.proxy(@translateNode, this)
+
+  translateNode: (node) ->
+    {
+      id: node.id
+      name: node.description || node.type
+      data:
+        type: node.type
+      adjacencies: @actions(node)
+    }
+
+  actions: (node) ->
+    if node.events
+      Object.values(node.events).map((event) ->
+        event.actions.map (action) ->
+          action.node_id
+      ).flatten()
+    else if node.actions
+      node.actions.map (action) ->
+        action.node_id
+    else
+      []
+
+window.Graph = Graph
