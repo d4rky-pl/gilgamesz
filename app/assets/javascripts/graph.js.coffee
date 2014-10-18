@@ -1,5 +1,6 @@
 class Graph
-  constructor: (@$element) ->
+  constructor: (@selector) ->
+    @$element = $(@selector)
     @json = gon.adventure
     @startId = @json.nodes.first().id
     @initGraph()
@@ -43,10 +44,12 @@ class Graph
         style.top = (top - 25) + "px"
     )
     @graphElement.loadJSON @graphJSON()
-    @graphElement.computeIncremental
-      onComplete: $.proxy(@render, this)
 
   render: ->
+    @graphElement.computeIncremental
+      onComplete: $.proxy(@renderCallback, this)
+
+  renderCallback: ->
     @graphElement.animate
       modes: ["linear"]
       transition: $jit.Trans.Elastic.easeOut
