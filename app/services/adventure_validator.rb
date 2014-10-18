@@ -2,6 +2,7 @@ class AdventureValidator
   class NameTaken < StandardError; end
   class InvalidPassage < StandardError; end
   class InvalidGameType < StandardError; end
+  class InvalidItem < StandardError; end
 
   def initialize(json)
     @json = json
@@ -65,7 +66,7 @@ class AdventureValidator
 
     nodes.each do |node|
       if node['item_id'].present?
-
+        raise InvalidItem unless item_ids.include? node['item_id']
       end
     end
   end
