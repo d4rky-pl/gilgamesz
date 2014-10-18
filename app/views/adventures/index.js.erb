@@ -1,0 +1,16 @@
+$("#table-all-games").html("<%= escape_javascript(render('adventures'))%>")
+
+$("#table-all-games th a, #table-all-games .pagination a").on("click", function() {
+    $.getScript($(this).attr("href"));
+    return false;
+});
+
+$("[rel='tooltip']").tooltip();
+
+$(".caption").fadeOut(250);
+
+$(".thumbnail").hover(function() {
+    $(".caption", $(this)).fadeIn(250);
+}, function() {
+    $(".caption", $(this)).fadeOut(250);
+});

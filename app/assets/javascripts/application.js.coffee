@@ -1,5 +1,6 @@
 #= require jquery
 #= require jquery_ujs
+#= require bootstrap
 #= require bootstrap/tooltip
 #= require bootstrap/popover
 #= require sugar
@@ -7,3 +8,4 @@
 #= require jit
 #= require_tree ./templates
 #= require adventure
+#= require adventures

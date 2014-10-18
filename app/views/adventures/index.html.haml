@@ -1,0 +1,13 @@
+.row
+  .col-sm-8
+    %h1 All games
+
+    #table-all-games
+      = render 'adventures'
+
+  .col-sm-4.sidebar
+
+    %h2 Most played games
+
+    #table-best-games
+      = render @adventures.order('plays DESC').limit(5)
