@@ -95,6 +95,7 @@
   ],
 
   "settings": {
+    "name": "Demo adventure",
     "author": "Michał Matyas",
     "game_type": "fantasy"
   }
