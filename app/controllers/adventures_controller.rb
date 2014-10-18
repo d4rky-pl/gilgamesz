@@ -12,7 +12,7 @@ class AdventuresController < ApplicationController
   end
 
   def show
-    gon.push adventure: Adventure.find(params[:id])
+    gon.push adventure: Adventure.find(params[:id]).content
   end
 
   private

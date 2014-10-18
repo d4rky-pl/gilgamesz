@@ -6,5 +6,5 @@
     = javascript_include_tag 'application'
     = include_gon
     = csrf_meta_tags
-  %body
+  %body{class: "#{params[:controller]}-#{params[:action]}"}
     = yield

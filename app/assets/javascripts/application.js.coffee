@@ -1,7 +1,9 @@
 #= require jquery
 #= require jquery_ujs
+#= require bootstrap/tooltip
+#= require bootstrap/popover
 #= require sugar
 #= require hamlcoffee
 #= require jit
 #= require_tree ./templates
-#= require edit_adventures
+#= require adventure
