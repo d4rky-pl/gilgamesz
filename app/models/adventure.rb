@@ -1,5 +1,11 @@
 class Adventure < ActiveRecord::Base
-  
+  enum game_type: %w( fantasy sci-fi detective )
+
+  before_create :generate_token
+
+  def generate_token
+    self.token = SecureRandom.hex(10)
+  end
 end
 
 # == Schema Information
