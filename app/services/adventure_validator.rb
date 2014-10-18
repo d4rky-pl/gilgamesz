@@ -28,6 +28,10 @@ class AdventureValidator
   def nodes
     @json['nodes']
   end
+
+  def items
+    @json['items']
+  end
   
   def validate_unique_name!
     raise NameTaken unless Adventure.where("content->'settings'->>'name' = ?", settings['name']).count == 0
@@ -52,6 +56,16 @@ class AdventureValidator
             raise InvalidPassage unless node_ids.include? action['node_id']
           end
         end
+      end
+    end
+  end
+
+  def validate_items!
+    item_ids = items.map { |item| item['id'] }
+
+    nodes.each do |node|
+      if node['item_id'].present?
+
       end
     end
   end

@@ -1,11 +1,10 @@
 class Adventure
   constructor: (container, adventure) ->
+    @renderer  = new AdventureRenderer(this, $(container))
+
     @settings = adventure.settings
     @nodes    = @prepareNodes(adventure.nodes)
     @items    = @prepareItems(adventure.items)
-
-    @_inventory = new AdventureInventory(this)
-    @_renderer  = new AdventureRenderer(this, $(container))
 
     @start_node = adventure.nodes[0]
 
@@ -22,46 +21,82 @@ class Adventure
     item_list
 
   start: ->
-    @_current_node = @start_node
+    @state = {
+      inventory: new AdventureInventory(this)
+      node:      @start_node
+      event:     null
+      past:      {}
+    }
+    @move(@start_node)
+
+  move: (node) ->
+    node = @nodes[node] unless node.id?
+    @state.node = node
+    @state.event = null
+    @react()
     @render()
+
+  react: ->
+    if AdventureReactions[@state.node.type]?
+      AdventureReactions[@state.node.type].call(this)
+
+  addItem: ->
+    @state.inventory.add(@state.node.item_id)
+
+  removeItem: ->
+    @state.inventory.remove(@state.node.item_id)
+
+  hasItem: ->
+    @state.inventory.has(@state.node.item_id)
 
   render: ->
-    @_renderer.render(@_current_node)
-
-  moveTo: (node) ->
-    @_current_node = node
-    @render()
+    @renderer.render(@state)
 
 
+  # HELPER METHODS
+  this_already_happened: ->
+    !!@state.past[@state.node.id]
+
+  happened: ->
+    @state.past[@state.node.id] = true
 
 class AdventureRenderer
   constructor: (adventure, container) ->
     @adventure = adventure
     @container = container
 
-  render: (node, event) ->
-    template = JST['show/template'](@getContextForNode(node, event))
+  render: (state) ->
+    self = this
+
+    template = JST['show/template'](@getContextForNode(state))
     @container.empty()
     @container.html(template)
     $('[data-toggle="popover"]', @container).popover()
 
-  getContextForNode: (node, event) ->
+    $('[data-action="move"]', @container).click ->
+      self.adventure.move($(this).data('node-id'))
+
+  getContextForNode: (state) ->
+    node = state.node
+    event = state.event
+
     context = {
       game_name: @adventure.settings.name
       type: node.type
+      event: event
     }
 
-    if event
+    if event?
       context.message = node.events[event].description
       context.actions = node.events[event].actions
     else
       context.message = node.description
       context.actions = node.actions
 
-    if node.type == 'add_item' || (node.type == 'use_item' && event == 'use_item')
+    if event == 'add_item' || event == 'use_item'
       context.item = @adventure.items[node.item_id]
 
-    context.inventory = @adventure._inventory.all()
+    context.inventory = @adventure.state.inventory.all()
     context
 
 
@@ -71,16 +106,20 @@ class AdventureInventory
     @adventure = adventure
     @inventory = []
 
-  add: (item) ->
-    @inventory.push(item)
+  add: (id) ->
+    @inventory.push(@adventure.items[id])
 
-  remove: (item) ->
+  remove: (id) ->
     item_index = @_itemIndex(id)
     @inventory.delete item_index if item_index != -1
 
   get: (id) ->
     item_index = @_itemIndex(id)
     @inventory[item_index] if item_index != -1
+
+  has: (id) ->
+    item_index = @_itemIndex(id)
+    item_index != -1
 
   all: ->
     @inventory
@@ -95,5 +134,34 @@ class AdventureInventory
         true
 
     item_index
+
+
+
+AdventureReactions = {
+  passage: ->
+    @state.event = undefined
+
+  add_item: ->
+    if @this_already_happened()
+      @state.event = 'already_has_item'
+
+    else
+      @state.event = 'add_item'
+      @addItem()
+      @happened()
+
+  use_item: ->
+    if @this_already_happened()
+      @state.event = 'already_used_item'
+
+    else if @state.inventory.has(@state.node.item_id)
+      @state.event = 'use_item'
+      @removeItem() if @state.node.remove_after
+      @happened()
+
+    else
+      @state.event = 'no_item'
+}
+
 
 window.Adventure = Adventure

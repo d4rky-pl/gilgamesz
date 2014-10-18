@@ -6,7 +6,7 @@
     .panel-body
       != @message
 
-      - if @type == 'add_item'
+      - if @event == 'add_item'
         %h3 You've gained a new item!
         .media
           .pull-left
@@ -15,7 +15,7 @@
             %h4.media-heading= @item.name
             != @item.description
 
-      - if @type == 'use_item'
+      - if @event == 'use_item'
         %h3 You've used an item.
         .media
           .pull-left
@@ -26,7 +26,7 @@
 
       .list-group
         - @actions.each (action) ->
-          %a.list-group-item{"data-node-id" => action.node_id}!= action.description
+          %a.list-group-item{"data-action" => "move", "data-node-id" => action.node_id}!= action.description
 
   .well
     %h3 Inventory
