@@ -2,6 +2,7 @@ class Adventure < ActiveRecord::Base
   enum game_type: %w( fantasy sci-fi detective )
 
   before_create :generate_token
+  before_save :content_will_change!
 
   def generate_token
     self.token = SecureRandom.hex(10)

@@ -2,5 +2,5 @@
 #= require jquery_ujs
 #= require hamlcoffee
 #= require jit
-#= require graph
-#= require adventures
+#= require_tree ./templates
+#= require edit_adventures

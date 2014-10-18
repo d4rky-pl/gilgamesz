@@ -12,11 +12,8 @@ gem 'gon'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
-
-group :assets do
-  gem 'haml_coffee_assets'
-  gem 'execjs'
-end
+gem 'haml_coffee_assets'
+gem 'execjs'
 
 group :development do
   gem 'spring'
