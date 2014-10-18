@@ -10,6 +10,9 @@ class Editor
 
     window._editor = this
 
+  selectNode: (id) ->
+    @sidebar.tabs.node.setNode(id)
+
   render: ->
     @sidebar.render()
 
@@ -55,7 +58,34 @@ class Editor.Sidebar.Base
 
 class Editor.Sidebar.Node extends Editor.Sidebar.Base
   template: 'node/passage'
+  current: null
 
+  constructor: (editor, container) ->
+    super
+    @current = @editor.adventure.nodes[0]
+
+  setNode: (id) ->
+    node_index = @_nodeIndex(id)
+    @current = @editor.adventure.nodes[node_index]
+    @render()
+
+  context: ->
+    {
+      id: @current.id
+    }
+
+  beforeRender: ->
+    @template = "node/#{@current.type}"
+
+  _nodeIndex: (id) ->
+    node_index = -1
+    @editor.adventure.nodes.each (node, i) ->
+      if node.id == id
+        node_index = i
+        false
+      else
+        true
+    node_index
 
 
 class Editor.Sidebar.Inventory extends Editor.Sidebar.Base
@@ -68,10 +98,6 @@ class Editor.Sidebar.Inventory extends Editor.Sidebar.Base
     }
 
   afterRender: ->
-    @bindRemoveButtons()
-
-
-  bindRemoveButtons: ->
     self = this
     $('[data-action="remove-item"]', @container).click ->
       $this = $(this)
@@ -93,8 +119,22 @@ class Editor.Sidebar.Inventory extends Editor.Sidebar.Base
         }
       )
 
+    $('form', @container).submit (e) ->
+      $this = $(this)
+      e.preventDefault()
+
+      item = {
+        id: "item-#{uuid.v4()}",
+        name: $this.find(':input[name="name"]').val(),
+        description: $this.find(':input[name="description"]').val(),
+        image: $this.find(':input[name="image"]').val()
+      }
+
+      self.addItem(item)
+
   addItem: (item) ->
     @editor.adventure.items.push(item)
+    @render()
 
   removeItem: (id) ->
     item_index = @_itemIndex(id)
@@ -111,6 +151,7 @@ class Editor.Sidebar.Inventory extends Editor.Sidebar.Base
       else
         true
     item_index
+
 
 
 class Editor.Sidebar.Settings extends Editor.Sidebar.Base
