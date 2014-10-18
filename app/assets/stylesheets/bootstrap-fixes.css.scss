@@ -4,3 +4,19 @@
   }
 }
 
+.bootstrap-select.form-control {
+  height: auto;
+}
+
+.table.table-vertically-aligned {
+  > thead,
+  > tbody,
+  > tfoot {
+    > tr {
+      > th,
+      > td {
+        vertical-align: middle;
+      }
+    }
+  }
+}

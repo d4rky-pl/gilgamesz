@@ -24,6 +24,18 @@ body.adventures-index {
   }
 
   background: url(image_path('adventure-index-body.png')) repeat;
+}
+
+body.adventures-edit,
+body.adventures-new {
+  #sidebar {
+    .tab-content {
+      margin-top: 10px
+    }
+  }
+}
+
+.table-games {
 
   .index-container {
     margin-top: 42px;

@@ -1,12 +1,12 @@
 %form
   .form-group
     %label.control-label Name
-    %input.form-control{ type: 'text', name: 'settings[name]', value: @adventure.settings.name }
+    %input.form-control{ type: 'text', name: 'name', value: @settings.name }
   .form-group
     %label.control-label Description
-    %textarea.form-control{ type: 'text', name: 'settings[description]', value: @adventure.settings.description }
+    %textarea.form-control{ type: 'text', name: 'description', value: @settings.description }
   .form-group
     %label.control-label Game type
-    %select.form-control{ name: 'settings[game_type]', value: @adventure.settings.game_type }
+    %select.form-control{ name: 'game_type', value: @settings.game_type }
       - for type in @game_types
         %option{ value: type }= type

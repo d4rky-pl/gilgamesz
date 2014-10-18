@@ -7,6 +7,6 @@
     %a{'href' => '#sidebar-settings', 'role' => 'tab', 'data-toggle' => 'tab'} Settings
 
 .tab-content
-  .tab-pane#sidebar-node
+  .tab-pane.active#sidebar-node
   .tab-pane#sidebar-inventory
   .tab-pane#sidebar-settings
