@@ -6,8 +6,8 @@ class AdventuresController < ApplicationController
 
   def new
     @adventure = Adventure.new
-    render action: 'edit'
     set_gon_attributes
+    render action: 'edit'
   end
 
   def edit

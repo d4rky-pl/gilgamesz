@@ -1,0 +1,12 @@
+%ul.nav.nav-tabs.nav-justified
+  %li.active
+    %a{'href' => '#sidebar-node', 'role' => 'tab', 'data-toggle' => 'tab'} Node
+  %li
+    %a{'href' => '#sidebar-inventory', 'role' => 'tab', 'data-toggle' => 'tab'} Inventory
+  %li
+    %a{'href' => '#sidebar-settings', 'role' => 'tab', 'data-toggle' => 'tab'} Settings
+
+.tab-content
+  .tab-pane#sidebar-node
+  .tab-pane#sidebar-inventory
+  .tab-pane#sidebar-settings

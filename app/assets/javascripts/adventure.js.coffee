@@ -44,6 +44,12 @@ class Adventure
     if AdventureReactions[@state.node.type]?
       AdventureReactions[@state.node.type].call(this)
 
+
+  render: ->
+    @renderer.render(@state)
+
+
+  # HELPER METHODS
   addItem: ->
     @state.inventory.add(@state.node.item_id)
 
@@ -53,11 +59,6 @@ class Adventure
   hasItem: ->
     @state.inventory.has(@state.node.item_id)
 
-  render: ->
-    @renderer.render(@state)
-
-
-  # HELPER METHODS
   this_already_happened: ->
     !!@state.past[@state.node.id]
 
@@ -65,7 +66,7 @@ class Adventure
     @state.past[@state.node.id] = true
 
 
-    
+
 class AdventureRenderer
   constructor: (adventure, container) ->
     @adventure = adventure
