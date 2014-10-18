@@ -8,3 +8,4 @@
 #= require jit
 #= require_tree ./templates
 #= require adventure
+#= require adventures
