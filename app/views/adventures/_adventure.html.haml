@@ -1,0 +1,28 @@
+.thumbnail
+  .caption{style: "display: none;"}
+    .row
+      %h3.col-sm-12.game-name
+        = adventure.content["settings"]["name"]
+      .col-sm-12
+        %p.game-author
+          Created by
+          %span
+            = adventure.content["settings"]["author"]
+
+        %p.game-author
+          Type
+          %span
+            = adventure.content["settings"]["game_type"]
+
+        %p.game-counter
+          Played
+          %span
+            = adventure.plays
+
+    .row
+      .col-sm-12
+        .text-center.game-actions
+          = link_to "Play", adventure_path(adventure), class: "btn btn-success"
+          = link_to "Edit", "#", class: "btn btn-primary"
+
+  = image_tag "http://www.theparanoidgamer.com/wp-content/uploads/2011/07/840935-tibia_super.jpg", class: "game-screen-icon"

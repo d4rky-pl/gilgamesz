@@ -1,4 +1,9 @@
 class AdventuresController < ApplicationController
+
+  def index
+    @adventures = Adventure.paginate(page: params[:page], per_page: 6)
+  end
+
   def new
     @adventure = Adventure.new
     gon.push adventure: @adventure
@@ -6,7 +11,9 @@ class AdventuresController < ApplicationController
   end
 
   def show
-    gon.push adventure: Adventure.find(params[:id])
+    @adventure = Adventure.find(params[:id])
+    @adventure.increment! :plays
+    gon.push adventure: @adventure
   end
 
   private
