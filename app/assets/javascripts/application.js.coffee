@@ -5,7 +5,10 @@
 #= require bootstrap/popover
 #= require sugar
 #= require hamlcoffee
+#= require assets_js
 #= require jit
 #= require_tree ./templates
 #= require adventure
 #= require adventures
+#= require editor
+#= require graph

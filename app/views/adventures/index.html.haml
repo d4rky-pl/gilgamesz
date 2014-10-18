@@ -1,13 +1,36 @@
-.row
-  .col-sm-8
-    %h1 All games
+.row.index-container
 
-    #table-all-games
-      = render 'adventures'
+  .col-sm-4.sidebar-container
 
-  .col-sm-4.sidebar
+    %h2 Create your own game!
+    %p
+      The Census and Excise is an establishment operated by the Empire
+      in an attempt to manage census counting for tax/excise purposes.
+      Imperial taxes are based on head counts of citizens;
+      Census and Excise is responsible for both head!
+    = link_to "create new game >", new_adventure_path, class: "btn btn-orange"
 
-    %h2 Most played games
+    .posters
+      = image_tag "poster.png", class: "poster"
 
-    #table-best-games
-      = render @adventures.order('plays DESC').limit(5)
+
+
+  .col-sm-8.games-container
+
+    %ul.nav.nav-tabs{:role => "tablist"}
+      %li.active
+        %a{"data-toggle" => "tab", :href => "#recent", :role => "tab"} Recent
+      %li
+        %a{"data-toggle" => "tab", :href => "#played", :role => "tab"} Choosen ones
+      %li
+        %a{"data-toggle" => "tab", :href => "#most-played", :role => "tab"} Most played
+
+    .tab-content
+      #recent.tab-pane.active
+        = render @adventures
+        = will_paginate @adventures, renderer: BootstrapPagination::Rails
+      #played.tab-pane
+        = render @played_adventures
+        = will_paginate @played_adventures, renderer: BootstrapPagination::Rails
+      #most-played.tab-pane
+        = render @best_adventures

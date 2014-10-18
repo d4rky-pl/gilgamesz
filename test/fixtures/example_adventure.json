@@ -22,7 +22,7 @@
     {
       "id": "passage-b38c9b07-0146-45ab-9ef2-0291f19da433",
       "type": "use_item",
-      "item": "item-ea522208-0529-43d7-8d46-05f17ae469d9",
+      "item_id": "item-ea522208-0529-43d7-8d46-05f17ae469d9",
 
       "remove_after": false,
 
@@ -59,11 +59,20 @@
     {
       "id": "passage-66ec970f-5f97-41c8-90cb-ad9d9f1d560a",
       "type": "add_item",
-      "item": "item-ea522208-0529-43d7-8d46-05f17ae469d9",
+      "item_id": "item-ea522208-0529-43d7-8d46-05f17ae469d9",
 
       "events": {
         "add_item": {
           "description": "<p>You have found a key</p>",
+          "actions": [
+            {
+              "node_id": "passage-a63b6d00-8d5a-4d75-b0e1-dffeb15a74e5",
+              "description": "<p>Go back</p>"
+            }
+          ]
+        },
+        "already_has_item": {
+          "description": "<p>You have already took the key from here</p>",
           "actions": [
             {
               "node_id": "passage-a63b6d00-8d5a-4d75-b0e1-dffeb15a74e5",
@@ -87,8 +96,8 @@
 
   "items": [
     {
-      "id": "item-2e751dc0-dffa-42ad-9e5b-c4f15a948e57",
-      "image": "blank.gif",
+      "id": "item-ea522208-0529-43d7-8d46-05f17ae469d9",
+      "image": "I_Key01.png",
       "name": "Door key",
       "description": "<p>Example key</p>"
     }

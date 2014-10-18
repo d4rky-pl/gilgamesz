@@ -6,7 +6,7 @@
     .panel-body
       != @message
 
-      - if @type == 'add_item'
+      - if @event == 'add_item'
         %h3 You've gained a new item!
         .media
           .pull-left
@@ -15,7 +15,7 @@
             %h4.media-heading= @item.name
             != @item.description
 
-      - if @type == 'use_item'
+      - if @event == 'use_item'
         %h3 You've used an item.
         .media
           .pull-left
@@ -24,12 +24,17 @@
             %h4.media-heading= @item.name
             != @item.description
 
-      .list-group
-        - @actions.each (action) ->
-          %a.list-group-item{"data-node-id" => action.node_id}!= action.description
+      - if @game_over
+        .list-group
+          %a.list-group-item{"data-action" => "restart"} Start from the beginning
 
-  .well
+      - else if @actions?
+        .list-group
+          - @actions.each (action) ->
+            %a.list-group-item{"data-action" => "move", "data-node-id" => action.node_id}!= action.description
+
+  .well.inventory
     %h3 Inventory
     - @inventory.each (item) ->
-      .thumbnail{"data-toggle" => "popover", "data-trigger" => "focus", "title" => item.name, "data-content" => item.description}
+      .thumbnail{"data-toggle" => "popover", "data-trigger" => "hover", "title" => item.name, "data-content" => item.description, "data-placement" => "top"}
         %img{src: item.image}

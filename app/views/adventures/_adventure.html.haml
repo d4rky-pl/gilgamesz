@@ -1,28 +1,17 @@
-.thumbnail
-  .caption{style: "display: none;"}
-    .row
-      %h3.col-sm-12.game-name
-        = adventure.content["settings"]["name"]
-      .col-sm-12
-        %p.game-author
-          Created by
-          %span
-            = adventure.content["settings"]["author"]
-
-        %p.game-author
-          Type
-          %span
-            = adventure.content["settings"]["game_type"]
-
-        %p.game-counter
-          Played
-          %span
-            = pluralize(adventure.plays, 'time')
-
-    .row
-      .col-sm-12
-        .text-center.game-actions
-          = link_to "Play", adventure_path(adventure), class: "btn btn-success"
-          = link_to "Edit", edit_adventure_path(adventure), class: "btn btn-primary"
-
-  = image_tag "http://www.theparanoidgamer.com/wp-content/uploads/2011/07/840935-tibia_super.jpg", class: "game-screen-icon"
+.col-sm-4
+  .adventure
+    %p.adventure-name
+      = link_to adventure.content["settings"]["name"], adventure_path(adventure)
+    .adventure-info
+      .adventure-image{style: "background: url(#{ "http://www.theparanoidgamer.com/wp-content/uploads/2011/07/840935-tibia_super.jpg" })"}
+      %p.adventure-description
+        The Census and Excise is an establishment operated by the Empire
+        in an attempt to manage census counting for tax/excise purposes.
+        Imperial taxes are based on head counts of citizens;
+        Census and Excise is responsible for both head!
+    .adventure-footer
+      %span
+        = adventure.content["settings"]["game_type"]
+      %span.pull-right
+        12
+        %span.adventure-star.adventure-star-active

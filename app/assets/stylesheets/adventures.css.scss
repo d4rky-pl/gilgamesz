@@ -10,9 +10,176 @@ body.adventures-show {
       }
     }
   }
+
+  .inventory {
+    > .thumbnail {
+      display: inline-block;
+    }
+  }
 }
 
 body.adventures-index {
+  .container {
+    padding-bottom: 20px;
+  }
+
+  background: url(image_path('adventure-index-body.png')) repeat;
+
+  .index-container {
+    margin-top: 42px;
+  }
+
+  .sidebar-container {
+    padding: 0 40px 0 0;
+
+    h2 {
+      font-family: 'ringbearer';
+      font-size: 36px;
+      color: #0b0604;
+      margin: 20px 0;
+    }
+
+    p {
+      font-family: 'Lato', sans-serif;
+      font-weight: normal;
+      color: #0b0604;
+      font-size: 16px;
+      margin: 20px 0;
+    }
+
+    a {
+      font-family: 'Lato', sans-serif;
+      font-weight: normal;
+      color: #fff;
+      background: #fb4700;
+      border-bottom: 2px solid #d63c00;
+      border-radius: 4px;
+      font-size: 22px;
+      width: 100%;
+      margin: 20px 0;
+      padding: 12px 0;
+      text-transform: uppercase;
+
+      &:hover {
+        background: #d63c00;
+      }
+    }
+
+    .posters {
+      width: 100%;
+      background: url(image_path("posters-bg.png"));
+      padding-bottom: 200px;
+      margin: 20px 0;
+
+      .poster {
+        width: 100%;
+      }
+    }
+  }
+
+  .games-container {
+    padding: 20px 32px;
+    background: #fff;
+    border-radius: 8px;
+
+    .nav-tabs {
+     border-bottom: 0;
+     padding: 0 15px 30px;
+
+      li {
+        background: #fff;
+        border: 0;
+
+        &.active {
+          background: #eeebdf;
+          border-radius: 4px;
+        }
+
+        a {
+          font-family: 'Lato', sans-serif;
+          font-weight: bold;
+          font-size: 14px;
+          color: #0b0604;
+          text-transform: uppercase;
+          border: 0;
+          margin: 0;
+          background: transparent;
+          padding: 10px 15px;
+        }
+      }
+    }
+
+    .col-sm-4 {
+      padding: 13px;
+
+      .adventure {
+        border: 1px solid #c0c0c0;
+        padding: 10px;
+
+        .adventure-name {
+          padding: 12px 0;
+          font-size: 20px;
+          margin: 0;
+          font-family: 'ringbearer';
+
+          a {
+            text-decoration: none;
+            color: #0b0604;
+          }
+        }
+
+        .adventure-info {
+          position: relative;
+
+          .adventure-image {
+            position: absolute;
+            visibility: visible;
+            width: 100%;
+            height: 100%;
+            background-size: contain;
+            background-position: top center;
+          }
+
+          .adventure-description {
+            visibility: hidden;
+            padding: 10px;
+            background: #eeebdf;
+            font-style: italic;
+            font-family: 'Lato', sans-serif;
+            font-weight: normal;
+            font-size: 14px;
+            color: #0b0604;
+          }
+
+        }
+
+        .adventure-footer {
+          font-family: 'Lato', sans-serif;
+          font-weight: normal;
+          font-size: 14px;
+          color: #0b0604;
+
+          .adventure-star {
+            width: 15px;
+            height: 15px;
+            margin-top: -3px;
+            background: url(image_path("star.png"));
+            background-size: contain;
+          }
+        }
+
+        &:hover {
+          .adventure-image {
+            visibility: hidden;
+          }
+
+          .adventure-description {
+            visibility: visible;
+          }
+        }
+      }
+    }
+  }
 
   .thumbnail {
     position: relative;
@@ -30,10 +197,7 @@ body.adventures-index {
       text-align: center;
       color: #fff !important;
       z-index: 2;
-
     }
-
   }
-
 }
 

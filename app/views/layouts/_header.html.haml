@@ -7,14 +7,12 @@
           %span.icon-bar
           %span.icon-bar
           %span.icon-bar
-        = link_to "Gilgamesz", root_path, class: "navbar-brand"
+        = link_to (image_tag "logo.png"), root_path, class: "navbar-brand"
       #navbar-collapse-1.collapse.navbar-collapse
         %ul.nav.navbar-nav.navbar-right
           %li
-            = link_to "Create new game", new_adventure_path
+            = link_to "Home", root_path
           %li
             = link_to "Help", help_path
           %li
-            find us on
-          %li
-            = link_to "Facebook", "#"
+            = link_to "Create", new_adventure_path, class: "red"
