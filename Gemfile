@@ -36,4 +36,4 @@ group :test do
   
 end
 
-ruby "2.1.1"
+ruby "2.1.2"

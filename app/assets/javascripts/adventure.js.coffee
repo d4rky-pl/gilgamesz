@@ -147,8 +147,6 @@ class AdventureInventory
         true
     item_index
 
-
-
 AdventureReactions = {
   passage: ->
     @state.event = undefined

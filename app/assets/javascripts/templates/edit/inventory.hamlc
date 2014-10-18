@@ -13,15 +13,20 @@
           %a.btn.btn-xs.btn-danger{'data-action' => 'remove-item', 'data-item-id' => item.id}
             %i.glyphicon.glyphicon-remove
 
-%form
-  .form-group
-    %label.control-label Name
-    %input.form-control{ type: 'text', name: 'name' }
-  .form-group
-    %label.control-label Description
-    %textarea.form-control{ type: 'text', name: 'description' }
-  .form-group
-    %label.control-label Image
-    %select.form-control{ class: 'selectpicker', name: 'image' }
-      - @available_images.each (image) ->
-        %option{value: image}= image
+.well
+  %form
+    .form-group
+      %label.control-label Name
+      %input.form-control{ type: 'text', name: 'name' }
+    .form-group
+      %label.control-label Description
+      %textarea.form-control{ type: 'text', name: 'description' }
+    .form-group
+      %label.control-label Image
+      %select.form-control{ class: 'selectpicker', name: 'image' }
+        - @available_images.each (image) ->
+          %option{value: image}= image
+
+    %button{class: 'btn btn-success'}
+      %i.glyphicon.glyphicon-plus
+      Add new item
