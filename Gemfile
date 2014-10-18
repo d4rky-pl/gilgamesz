@@ -16,6 +16,7 @@ gem 'jquery-rails'
 gem 'haml_coffee_assets'
 gem 'execjs'
 gem 'will_paginate-bootstrap'
+gem 'assets_js'
 
 group :development do
   gem 'spring'

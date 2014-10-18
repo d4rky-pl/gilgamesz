@@ -10,6 +10,12 @@ body.adventures-show {
       }
     }
   }
+
+  .inventory {
+    > .thumbnail {
+      display: inline-block;
+    }
+  }
 }
 
 .table-games {

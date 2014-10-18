@@ -70,6 +70,15 @@
               "description": "<p>Go back</p>"
             }
           ]
+        },
+        "already_has_item": {
+          "description": "<p>You have already took the key from here</p>",
+          "actions": [
+            {
+              "node_id": "passage-a63b6d00-8d5a-4d75-b0e1-dffeb15a74e5",
+              "description": "<p>Go back</p>"
+            }
+          ]
         }
       }
     },
@@ -88,7 +97,7 @@
   "items": [
     {
       "id": "item-ea522208-0529-43d7-8d46-05f17ae469d9",
-      "image": "blank.gif",
+      "image": "I_Key01.png",
       "name": "Door key",
       "description": "<p>Example key</p>"
     }

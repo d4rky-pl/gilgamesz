@@ -9,3 +9,4 @@
 #= require_tree ./templates
 #= require adventure
 #= require adventures
+#= require assets_js

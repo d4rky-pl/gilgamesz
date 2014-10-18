@@ -17,6 +17,7 @@ class Adventure
   prepareItems: (items) ->
     item_list = {}
     items.each (item) ->
+      item.image = asset_path("items/#{item.image}")
       item_list[item.id] = item
     item_list
 
@@ -28,6 +29,9 @@ class Adventure
       past:      {}
     }
     @move(@start_node)
+
+  restart: ->
+    @start()
 
   move: (node) ->
     node = @nodes[node] unless node.id?
@@ -60,6 +64,8 @@ class Adventure
   happened: ->
     @state.past[@state.node.id] = true
 
+
+    
 class AdventureRenderer
   constructor: (adventure, container) ->
     @adventure = adventure
@@ -71,10 +77,13 @@ class AdventureRenderer
     template = JST['show/template'](@getContextForNode(state))
     @container.empty()
     @container.html(template)
-    $('[data-toggle="popover"]', @container).popover()
+    $('[data-toggle="popover"]', @container).popover({ html: true })
 
     $('[data-action="move"]', @container).click ->
       self.adventure.move($(this).data('node-id'))
+
+    $('[data-action="restart"]', @container).click ->
+      self.adventure.restart()
 
   getContextForNode: (state) ->
     node = state.node
@@ -95,6 +104,9 @@ class AdventureRenderer
 
     if event == 'add_item' || event == 'use_item'
       context.item = @adventure.items[node.item_id]
+
+    if node.type == 'finish' || node.type == 'gameover'
+      context.game_over = true
 
     context.inventory = @adventure.state.inventory.all()
     context
@@ -161,6 +173,11 @@ AdventureReactions = {
 
     else
       @state.event = 'no_item'
+
+  finish: ->
+
+  gameover: ->
+
 }
 
 
