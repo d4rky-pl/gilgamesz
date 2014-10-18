@@ -1,4 +1,4 @@
-%table.table.table-striped
+%table.table.table-striped.table-vertically-aligned
   %thead
     %tr
       %td{colspan: 4} Existing items
@@ -23,9 +23,9 @@
       %textarea.form-control{ type: 'text', name: 'description' }
     .form-group
       %label.control-label Image
-      %select.form-control{ class: 'selectpicker', name: 'image' }
+      %select.form-control.selectpicker{ name: 'image' }
         - @available_images.each (image) ->
-          %option{value: image}= image
+          %option{value: image, 'data-content': "<img src='#{asset_path('items/' + image)}'> <b>#{image.replace(/\.[a-z]$/, '')}</b>"}= image.replace(/\.[a-z]$/, '')
 
     %button{class: 'btn btn-success'}
       %i.glyphicon.glyphicon-plus

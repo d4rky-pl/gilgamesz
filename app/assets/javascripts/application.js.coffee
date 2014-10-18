@@ -10,6 +10,7 @@
 #= require bootbox
 #= require uuid
 #= require jquery.serializejson
+#= require bootstrap-select
 #= require_tree ./templates
 #= require adventure
 #= require adventures

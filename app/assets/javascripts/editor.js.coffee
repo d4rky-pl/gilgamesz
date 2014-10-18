@@ -166,6 +166,7 @@ class Editor.Sidebar.Inventory extends Editor.Sidebar.Base
 
   afterRender: ->
     self = this
+    $('.selectpicker', @container).selectpicker()
     $('[data-action="remove-item"]', @container).click ->
       $this = $(this)
       id = $this.data('item-id')
