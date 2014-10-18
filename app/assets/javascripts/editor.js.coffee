@@ -7,6 +7,11 @@ class Editor
 
     @adventure = adventure
     @sidebar = new Editor.Sidebar(this, '#sidebar')
+    @graph   = new Graph(this, '#graph')
+
+
+    # @graph.addNode(parent, child)
+    # @graph.removeNode(parent, child)
 
     window._editor = this
 
@@ -15,8 +20,7 @@ class Editor
 
   render: ->
     @sidebar.render()
-
-
+    @graph.render()
 
 class Editor.Sidebar
   constructor: (editor, container) ->

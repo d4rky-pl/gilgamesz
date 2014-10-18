@@ -1,5 +1,5 @@
 class Graph
-  constructor: (@selector) ->
+  constructor: (@editor, @selector) ->
     @$element = $(@selector)
     @json = gon.adventure
     @startId = @json.nodes.first().id
@@ -7,8 +7,9 @@ class Graph
     @bindEvents()
 
   bindEvents: ->
+    self = this
     @$element.on 'click', '.node', ->
-      alert($(this).data('id'))
+      self.editor.selectNode($(this).data('id'))
       return false
 
   # methods for infovis graph initialization
