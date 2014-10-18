@@ -9,6 +9,7 @@
 #= require jit
 #= require bootbox
 #= require uuid
+#= require jquery.serializejson
 #= require_tree ./templates
 #= require adventure
 #= require adventures

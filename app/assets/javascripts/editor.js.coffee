@@ -55,7 +55,6 @@ class Editor.Sidebar.Base
   beforeRender: ->
   afterRender: ->
 
-
 class Editor.Sidebar.Node extends Editor.Sidebar.Base
   template: 'node/passage'
   current: null
@@ -63,6 +62,12 @@ class Editor.Sidebar.Node extends Editor.Sidebar.Base
   constructor: (editor, container) ->
     super
     @current = @editor.adventure.nodes[0]
+
+  createNewNode: (type) ->
+    obj = $.extend(true, {}, Editor.Sidebar.Node.Templates[type])
+    obj.id = "#{obj.type}-#{uuid.v4()}"
+    @editor.adventure.nodes.push(obj)
+    setNode(obj.id)
 
   setNode: (id) ->
     node_index = @_nodeIndex(id)
@@ -77,6 +82,12 @@ class Editor.Sidebar.Node extends Editor.Sidebar.Base
   beforeRender: ->
     @template = "node/#{@current.type}"
 
+  afterRender: ->
+    self = this
+    $('form', @container).submit (e) ->
+      e.preventDefault()
+      self.current = Editor.Sidebar.Node.Serializers[self.current.type]($(this).serializeJSON())
+
   _nodeIndex: (id) ->
     node_index = -1
     @editor.adventure.nodes.each (node, i) ->
@@ -87,6 +98,58 @@ class Editor.Sidebar.Node extends Editor.Sidebar.Base
         true
     node_index
 
+Editor.Sidebar.Node.Serializers = {
+  passage: (obj) ->
+
+}
+
+Editor.Sidebar.Node.Templates = {
+  passage: {
+    type: 'passage'
+    description: 'You are here.'
+    actions: []
+  },
+  add_item: {
+    type: 'add_item'
+    item_id: null
+    events: {
+      add_item: {
+        description: 'You have found an item.'
+        actions: []
+      },
+      already_have_item: {
+        description: 'You already have an item.'
+        actions: []
+      }
+    }
+  },
+  use_item: {
+    type: 'use_item'
+    item_id: null
+    events: {
+      use_item: {
+        description: 'You are using item.'
+        actions: []
+      },
+      already_used_item: {
+        description: 'You already used your item.'
+        actions: []
+      },
+      no_item: {
+        description: "You don't have an item"
+        actions: []
+      }
+    }
+  },
+  gameover: {
+    type: 'gameover'
+    description: 'Game over. You lost.'
+  },
+  finish: {
+    type: 'finish'
+    description: 'You won.'
+  }
+}
 
 class Editor.Sidebar.Inventory extends Editor.Sidebar.Base
   template: 'inventory'
