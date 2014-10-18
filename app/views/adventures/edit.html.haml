@@ -1,16 +1,8 @@
 .container-fluid
   .row
-    .col-md-8
+    .col-md-8#graphs
       #graph
 
 
-    .col-md-4
-      #adventure
-        %h3 Adventure settings
-        = bootstrap_form_for @adventure do |f|
-          = f.text_field :name
-          = f.text_area :description
-          = f.select :game_type, Adventure.game_types
-          = f.submit 'Save', class: 'btn btn-primary'
-          = link_to 'Cancel', '#', class: 'btn btn-default'
-      #node
+    .col-md-4#forms
+
