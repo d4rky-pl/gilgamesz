@@ -1,159 +1,60 @@
-$(document).ready ->
-  graphElement = new $jit.ForceDirected(
-
-    #id of the visualization container
-    injectInto: "graph"
-
-    #Enable zooming and panning
-    #by scrolling and DnD
-    Navigation:
-      enable: true
-
-      #Enable panning events only if we're dragging the empty
-      #canvas (and not a node).
-      panning: "avoid nodes"
-      zooming: 10 #zoom speed. higher is more sensible
-
-
-  # Change node and edge styles such as
-  # color and width.
-  # These properties are also set per node
-  # with dollar prefixed data-properties in the
-  # JSON structure.
-    Node:
-      overridable: true
-
-    Edge:
-      type: 'line'
-      overridable: true
-      color: "#8f8f8f"
-      lineWidth: 2
-
-
-  #Native canvas text styling
-    Label:
-      type: "HTML" #Native or HTML
-      size: 10
-      style: "bold"
-
-
-  #Add Tips
-    Tips:
-      enable: true
-      onShow: (tip, node) ->
-
-        #count connections
-        count = 0
-        node.eachAdjacency ->
-          count++
-          return
-
-
-        #display node info in tooltip
-        tip.innerHTML = "<div class=\"tip-title\">" + node.name + "</div>" + "<div class=\"tip-text\"><b>connections:</b> " + count + "</div>"
-        return
-
-
-  # Add node events
-    Events:
-      enable: true
-      type: "Native"
-
-    #Change cursor style when hovering a node
-      onMouseEnter: ->
-        graphElement.canvas.getElement().style.cursor = "move"
-        return
-
-      onMouseLeave: ->
-        graphElement.canvas.getElement().style.cursor = ""
-        return
-
-
-    #Update node positions when dragged
-      onDragMove: (node, eventInfo, e) ->
-        pos = eventInfo.getPos()
-        node.pos.setc pos.x, pos.y
-        graphElement.plot()
-        return
-
-
-    #Implement the same handler for touchscreens
-      onTouchMove: (node, eventInfo, e) ->
-        $jit.util.event.stop e #stop default touchmove event
-        @onDragMove node, eventInfo, e
-        return
-
-
-    #Add also a click handler to nodes
-      onClick: (node) ->
-        return  unless node
-
-        # Build the right column relations list.
-        # This is done by traversing the clicked node connections.
-        html = "<h4>" + node.name + "</h4><b> connections:</b><ul><li>"
-        list = []
-        node.eachAdjacency (adj) ->
-          list.push adj.nodeTo.name
-          return
-
-
-        #append connections information
-        $jit.id("inner-details").innerHTML = html + list.join("</li><li>") + "</li></ul>"
-        return
-
-
-  #Number of iterations for the FD algorithm
-    iterations: 200
-
-  #Edge length
-    levelDistance: 200
-
-  # Add text to the labels. This method is only triggered
-  # on label creation and only for DOM labels (not native canvas ones).
-    onCreateLabel: (domElement, node) ->
-      domElement.innerHTML = JST['edit/graph_node'](node: node)
-      return
-
-
-  # Change node styles when DOM labels are placed
-  # or moved.
-    onPlaceLabel: (domElement, node) ->
-      style = domElement.style
-      left = parseInt(style.left)
-      top = parseInt(style.top)
-      w = domElement.offsetWidth
-      style.left = (left - w / 2) + "px"
-      style.top = (top - 25) + "px"
-      return
-  )
-
-  # load JSON data.
-  graphElement.loadJSON new Graph(gon.adventure).nodes()
-
-  # compute positions incrementally and animate.
-  graphElement.computeIncremental
-    iter: 40
-    property: "end"
-    onStep: (perc) ->
-      console.log perc + "% loaded..."
-      return
-
-    onComplete: ->
-      console.log "done"
-      graphElement.animate
-        modes: ["linear"]
-        transition: $jit.Trans.Elastic.easeOut
-        duration: 2500
-
-      return
-
-#return true if pos is inside the arc or false otherwise
-
 class Graph
-  constructor: (@json) ->
+  constructor: (@$element) ->
+    @json = gon.adventure
     @startId = @json.nodes.first().id
+    @initGraph()
+    @bindEvents()
 
-  nodes: ->
+  bindEvents: ->
+    @$element.on 'click', '.node', ->
+      alert($(this).data('id'))
+      return false
+
+  # methods for infovis graph initialization
+  initGraph: ->
+    @graphElement = new $jit.ForceDirected(
+      injectInto: @$element.attr('id')
+      Navigation:
+        enable: true
+        panning: "avoid nodes"
+        zooming: 10
+      Node:
+        overridable: false
+      Edge:
+        type: 'line'
+        overridable: true
+        color: "#8f8f8f"
+        lineWidth: 2
+      Label:
+        type: "HTML"
+        size: 10
+      iterations: 200
+      levelDistance: 150
+
+      onCreateLabel: (domElement, node) ->
+        domElement.innerHTML = JST['edit/graph_node'](node: node)
+
+      onPlaceLabel: (domElement, node) ->
+        style = domElement.style
+        left = parseInt(style.left)
+        top = parseInt(style.top)
+        w = domElement.offsetWidth
+        style.left = (left - w / 2) + "px"
+        style.top = (top - 25) + "px"
+    )
+    @graphElement.loadJSON @graphJSON()
+    @graphElement.computeIncremental
+      onComplete: $.proxy(@render, this)
+
+  render: ->
+    @graphElement.animate
+      modes: ["linear"]
+      transition: $jit.Trans.Elastic.easeOut
+      duration: 2500
+
+  # methods for building graph JSON
+
+  graphJSON: ->
     @json.nodes.map $.proxy(@translateNode, this)
 
   translateNode: (node) ->

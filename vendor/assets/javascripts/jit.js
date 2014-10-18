@@ -14348,8 +14348,8 @@ Layouts.ForceDirected = new Class({
       $.each(prop, function(p) {
         var pos = n.getPos(p);
         if(pos.equals(Complex.KER)) {
-          pos.x = opt.width/5 * (Math.random() - 0.5);
-          pos.y = opt.height/5 * (Math.random() - 0.5);
+          pos.x = (opt.width)/5 * (Math.random() - 0.5);
+          pos.y = (opt.height)/5 * (Math.random() - 0.5);
         }
         //initialize disp vector
         n.disp = {};
