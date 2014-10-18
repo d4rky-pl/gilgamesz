@@ -1,0 +1,101 @@
+{
+  "nodes": [
+    {
+      "id": "passage-a63b6d00-8d5a-4d75-b0e1-dffeb15a74e5",
+      "type": "passage",
+      "description": "You are standing in front of the door.",
+      "actions": [
+        {
+          "node_id": "passage-b38c9b07-0146-45ab-9ef2-0291f19da433",
+          "description": "Try to open the door"
+        },
+        {
+          "node_id": "passage-66ec970f-5f97-41c8-90cb-ad9d9f1d560a",
+          "description": "Look for a key"
+        },
+        {
+          "node_id": "gameover-e95a7185-f917-4d4e-bc93-9e29253ab974",
+          "description": "Lie down on the floor and die."
+        }
+      ]
+    },
+    {
+      "id": "passage-b38c9b07-0146-45ab-9ef2-0291f19da433",
+      "type": "use_item",
+      "item": "item-ea522208-0529-43d7-8d46-05f17ae469d9",
+
+      "remove_after": false,
+
+      "events": {
+        "use_item": {
+          "description": "You open a door using the key",
+          "actions": [
+            {
+              "node_id": "finish-b461338d-9543-4dc3-876a-6da82b374d24",
+              "description": "Step forward"
+            }
+          ]
+        },
+        "already_used_item": {
+          "description": "Door is open",
+          "actions": [
+            {
+              "node_id": "finish-b461338d-9543-4dc3-876a-6da82b374d24",
+              "description": "Step forward"
+            }
+          ]
+        },
+        "no_item": {
+          "description": "You need a key to open this door.",
+          "actions": [
+            {
+              "node_id": "passage-a63b6d00-8d5a-4d75-b0e1-dffeb15a74e5",
+              "description": "Go back"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "passage-66ec970f-5f97-41c8-90cb-ad9d9f1d560a",
+      "type": "add_item",
+      "item": "item-ea522208-0529-43d7-8d46-05f17ae469d9",
+
+      "events": {
+        "add_item": {
+          "description": "You have found a key",
+          "actions": [
+            {
+              "node_id": "passage-a63b6d00-8d5a-4d75-b0e1-dffeb15a74e5",
+              "description": "Go back"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "gameover-e95a7185-f917-4d4e-bc93-9e29253ab974",
+      "type": "gameover",
+      "description": "You are dead."
+    },
+    {
+      "id": "finish-b461338d-9543-4dc3-876a-6da82b374d24",
+      "type": "finish",
+      "description": "You have finished the demo!"
+    }
+  ],
+
+  "items": [
+    {
+      "id": "item-2e751dc0-dffa-42ad-9e5b-c4f15a948e57",
+      "image": "blank.gif",
+      "name": "Door key",
+      "description": "Example key"
+    }
+  ],
+
+  "settings": {
+    "author": "Michał Matyas",
+    "game_type": "fantasy"
+  }
+}

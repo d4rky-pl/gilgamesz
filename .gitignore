@@ -14,3 +14,12 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+
+/public/uploads
+
+/lib/assets/bower_components
+/vendor/assets/bower_components
+.vagrant
+.idea
+/private/*
+.DS_Store
