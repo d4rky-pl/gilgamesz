@@ -27,10 +27,10 @@
 
     .tab-content
       #recent.tab-pane.active
-        = render @adventures
-        = will_paginate @adventures, renderer: BootstrapPagination::Rails
+        = render 'adventures'
       #played.tab-pane
-        = render @played_adventures
-        = will_paginate @played_adventures, renderer: BootstrapPagination::Rails
+        .row
+          = render @played_adventures
       #most-played.tab-pane
-        = render @best_adventures
+        .row
+          = render @best_adventures

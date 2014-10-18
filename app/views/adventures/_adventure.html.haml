@@ -1,17 +1,22 @@
-.col-sm-4
+.col-lg-4
   .adventure
-    %p.adventure-name
-      = link_to adventure.content["settings"]["name"], adventure_path(adventure)
-    .adventure-info
-      .adventure-image{style: "background: url(#{ "http://www.theparanoidgamer.com/wp-content/uploads/2011/07/840935-tibia_super.jpg" })"}
-      %p.adventure-description
-        The Census and Excise is an establishment operated by the Empire
-        in an attempt to manage census counting for tax/excise purposes.
-        Imperial taxes are based on head counts of citizens;
-        Census and Excise is responsible for both head!
+    %a{href: adventure_path(adventure)}
+      %p.adventure-name
+        = adventure.content["settings"]["name"]
+      .adventure-info
+        .adventure-image{style: "background: url(#{ "http://www.theparanoidgamer.com/wp-content/uploads/2011/07/840935-tibia_super.jpg" })"}
+        %p.adventure-description
+          The Census and Excise is an establishment operated by the Empire
+          in an attempt to manage census counting for tax/excise purposes.
+          Imperial taxes are based on head counts of citizens;
+          Census and Excise is responsible for both head!
     .adventure-footer
-      %span
-        = adventure.content["settings"]["game_type"]
-      %span.pull-right
-        12
-        %span.adventure-star.adventure-star-active
+      = adventure.content["settings"]["game_type"]
+      .pull-right.counter{id: "adventure-counter-#{ adventure.id }"}
+        - if @liked_adventures.include? adventure.id.to_s
+          .adventure-star.liked
+        - else
+          = link_to adventure_like_path(adventure) do
+            .adventure-star.active
+        %span
+          = adventure.likes

@@ -1,0 +1,6 @@
+.row
+  - @adventures.each do |adventure|
+    = render adventure
+
+.row
+  = will_paginate @adventures, renderer: BootstrapPagination::Rails

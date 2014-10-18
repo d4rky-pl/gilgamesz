@@ -3,4 +3,53 @@
   border-radius: 0;
   background: url(image_path('header.png')) repeat-x;
   margin-bottom: 0;
+
+  .container {
+    padding-bottom: 20px;
+    padding: 0 0 20px;
+  }
+
+  .container-fluid {
+    padding: 0;
+  }
+
+  .navbar-nav li {
+    font-family: 'Lato', sans-serif;
+    font-weight: bold;
+    font-size: 14px;
+
+    a {
+      color: #fff;
+      text-transform: uppercase;
+
+      &:hover {
+        color: #fff;
+      }
+
+      &.red {
+        color: #fb4700;
+
+        &:hover{
+          color: #fb4700;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px){
+  .header {
+    .container-fluid {
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+
+    .navbar-nav li a {
+      color: #0b0604;
+
+      &:hover {
+        color: #0b0604;
+      }
+    }
+  }
 }

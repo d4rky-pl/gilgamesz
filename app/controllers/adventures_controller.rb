@@ -1,9 +1,10 @@
 class AdventuresController < ApplicationController
 
   def index
-    @adventures = Adventure.paginate(page: params[:page], per_page: 9)
-    @played_adventures = Adventure.paginate(page: params[:page], per_page: 9).limit(9)
+    @adventures = Adventure.order('created_at DESC').paginate(page: params[:page], per_page: 9)
+    @played_adventures = (session[:played_adventures]) ? Adventure.find(played_adventures)[0..8] : [];
     @best_adventures = Adventure.all.order('plays DESC').limit(9)
+    @liked_adventures = liked_adventures
   end
 
   def new
@@ -21,6 +22,15 @@ class AdventuresController < ApplicationController
     @adventure = Adventure.find(params[:id])
     @adventure.increment! :plays
     gon.push adventure: @adventure.content
+    mark_adventure_as_played
+  end
+
+  def like
+    @adventure = Adventure.find(params[:adventure_id])
+    unless liked_adventures.include? params[:adventure_id]
+      @adventure.increment! :likes
+      mark_adventure_as_liked
+    end
   end
 
   private
@@ -35,5 +45,21 @@ class AdventuresController < ApplicationController
 
   def available_images
     Dir.chdir(Rails.root.join('app','assets','images','items')) { Dir["*.*"] }
+  end
+
+  def played_adventures
+    session[:played_adventures] ||= []
+  end
+
+  def mark_adventure_as_played
+    (session[:played_adventures] ||= []) << params[:id]
+  end
+
+  def liked_adventures
+    session[:liked_adventures] ||= []
+  end
+
+  def mark_adventure_as_liked
+    (session[:liked_adventures] ||= []) << params[:adventure_id]
   end
 end
