@@ -5,6 +5,10 @@ class AdventuresController < ApplicationController
     render action: 'edit'
   end
 
+  def show
+    gon.push adventure: Adventure.find(params[:id])
+  end
+
   private
 
   def adventure_params
