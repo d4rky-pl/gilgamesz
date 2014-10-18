@@ -1,0 +1,4 @@
+.node
+  .identifier 41
+  .name= @node.name.stripTags()
+  .type= @node.data.type
