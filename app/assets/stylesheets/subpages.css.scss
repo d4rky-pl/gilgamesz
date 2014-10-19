@@ -7,7 +7,15 @@ body.subpages-about {
   }
 
   .row {
-    text-align: center
+    text-align: center;
+
+    a {
+      opacity: 0.5;
+      @include transition(0.5s);
+      &:hover {
+        opacity: 0.85;
+      }
+    }
   }
 
   h2 {
@@ -31,12 +39,5 @@ body.subpages-about {
     }
   }
 
-  a {
-    opacity: 0.5;
-    @include transition(0.5s);
-    &:hover {
-      opacity: 0.85;
-    }
-  }
 
 }
