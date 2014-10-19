@@ -1,36 +1,49 @@
 class Graph
   constructor: (@editor, @selector) ->
     @$element = $(@selector)
-    @json = gon.adventure
-    @startId = @json.nodes.first().id
     @initGraph()
     @bindEvents()
+    @selectionModeEnabled = false
+    @selectionModeCb = (node_id) ->
+    window._graph = this
 
   bindEvents: ->
     self = this
+
+    $(window).on 'resize', ->
+      self.rerender()
+
     @$element.on 'click', '.node', ->
-      self.editor.selectNode($(this).data('id'))
+      if self.selectionModeEnabled
+        self.selectionModeCb.call(this, $(this).data('id'))
+        @selectionModeEnabled = false
+      else
+        self.editor.selectNode($(this).data('id'))
       return false
 
+  selectionMode: (callback) ->
+    @selectionModeEnabled = true
+    @selectionModeCb = callback
+
   # methods for infovis graph initialization
+
   initGraph: ->
     @graphElement = new $jit.ForceDirected(
       injectInto: @$element.attr('id')
       Navigation:
         enable: true
         panning: "avoid nodes"
-        zooming: 10
       Node:
         overridable: false
       Edge:
-        type: 'line'
+        type: 'arrow'
         overridable: true
         color: "#8f8f8f"
         lineWidth: 2
       Label:
         type: "HTML"
         size: 10
-      iterations: 200
+      iterations: 1
       levelDistance: 150
 
       onCreateLabel: (domElement, node) ->
@@ -50,16 +63,21 @@ class Graph
     @graphElement.computeIncremental
       onComplete: $.proxy(@renderCallback, this)
 
+  rerender: ->
+    @$element.html('');
+    @initGraph();
+    @render();
+
   renderCallback: ->
     @graphElement.animate
       modes: ["linear"]
       transition: $jit.Trans.Elastic.easeOut
-      duration: 2500
+      duration: 0
 
   # methods for building graph JSON
 
   graphJSON: ->
-    @json.nodes.map $.proxy(@translateNode, this)
+    gon.adventure.nodes.map $.proxy(@translateNode, this)
 
   translateNode: (node) ->
     {

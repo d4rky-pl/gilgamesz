@@ -1,7 +1,6 @@
-.container-fluid
-  .row
-    .col-md-8
-      #graph
+.row
+  .col-md-9
+    #graph
 
-    .col-md-4
-      #sidebar
+  .col-md-3
+    #sidebar

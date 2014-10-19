@@ -14,5 +14,5 @@
 
     = render 'layouts/header'
 
-    .container
+    %div{ class: @fluid_layout ? 'container-fluid' : 'container' }
       = yield

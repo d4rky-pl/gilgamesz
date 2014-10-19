@@ -6,5 +6,8 @@
     %label.control-label Story
     %textarea.form-control{ type: 'text', name: 'description'}= @node.description
 
-    %div{'data-action-box' => true}
+  %div{'data-action-box' => true}
 
+  %button.btn.btn-danger.btn-remove-node{'data-action' => 'remove-node', 'type' => 'button', 'class' => @remove_button_class}
+    %i.glyphicon.glyphicon-remove
+    Remove node

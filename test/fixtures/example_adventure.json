@@ -7,14 +7,17 @@
       "description": "<p>You are standing in front of the door.</p>",
       "actions": [
         {
+          "id": "action-c790f9e4-e6c8-4837-b2bc-3f94992002b4",
           "node_id": "passage-b38c9b07-0146-45ab-9ef2-0291f19da433",
           "description": "<p>Try to open the door</p>"
         },
         {
+          "id": "action-f4092e38-8497-40b0-a13e-49da1c234f00",
           "node_id": "passage-66ec970f-5f97-41c8-90cb-ad9d9f1d560a",
           "description": "<p>Look for a key</p>"
         },
         {
+          "id": "action-84539144-2278-4240-a9c0-42772837677a",
           "node_id": "gameover-e95a7185-f917-4d4e-bc93-9e29253ab974",
           "description": "<p>Lie down on the floor and die.</p>"
         }
@@ -32,6 +35,7 @@
           "description": "<p>You open a door using the key</p>",
           "actions": [
             {
+              "id": "action-cda31eb6-0293-4d6a-96a6-b4f997bc5d96",
               "node_id": "finish-b461338d-9543-4dc3-876a-6da82b374d24",
               "description": "<p>Step forward</p>"
             }
@@ -41,6 +45,7 @@
           "description": "<p>Door is open</p>",
           "actions": [
             {
+              "id": "action-33e72d4d-772e-4231-ab24-96902d8376ee",
               "node_id": "finish-b461338d-9543-4dc3-876a-6da82b374d24",
               "description": "<p>Step forward</p>"
             }
@@ -50,6 +55,7 @@
           "description": "<p>You need a key to open this door.</p>",
           "actions": [
             {
+              "id": "e3d22f8a-06cd-4447-a4ef-dcf1d3015268",
               "node_id": "passage-a63b6d00-8d5a-4d75-b0e1-dffeb15a74e5",
               "description": "<p>Go back</p>"
             }
@@ -68,6 +74,7 @@
           "description": "<p>You have found a key</p>",
           "actions": [
             {
+              "id": "action-3cded05c-f646-4e76-af20-10e7cd4e77a4",
               "node_id": "passage-a63b6d00-8d5a-4d75-b0e1-dffeb15a74e5",
               "description": "<p>Go back</p>"
             }
@@ -77,6 +84,7 @@
           "description": "<p>You have already took the key from here</p>",
           "actions": [
             {
+              "id": "action-5fb1f89c-40d1-40ba-b443-710325d85b41",
               "node_id": "passage-a63b6d00-8d5a-4d75-b0e1-dffeb15a74e5",
               "description": "<p>Go back</p>"
             }

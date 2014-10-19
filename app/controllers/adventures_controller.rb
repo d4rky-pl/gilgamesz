@@ -1,4 +1,5 @@
 class AdventuresController < ApplicationController
+  before_action :fluid_layout, only: [:edit, :new]
 
   def index
     @adventures = Adventure.order('created_at DESC').paginate(page: params[:page], per_page: 9)
@@ -61,5 +62,9 @@ class AdventuresController < ApplicationController
 
   def mark_adventure_as_liked
     (session[:liked_adventures] ||= []) << params[:adventure_id]
+  end
+
+  def fluid_layout
+    @fluid_layout = true
   end
 end

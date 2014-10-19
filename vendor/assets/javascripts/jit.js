@@ -6435,7 +6435,7 @@ var EdgeHelper = {
           to = tmp;
         }
         var vect = new Complex(to.x - from.x, to.y - from.y);
-        vect.$scale(dim / vect.norm());
+        vect.$scale(dim / 1.5 / vect.norm());
         var intermediatePoint = new Complex(to.x - vect.x, to.y - vect.y),
             normal = new Complex(-vect.y / 2, vect.x / 2),
             v1 = intermediatePoint.add(normal), 
@@ -14342,23 +14342,43 @@ Layouts.ForceDirected = new Class({
   compute: function(property, incremental) {
     var prop = $.splat(property || ['current', 'start', 'end']);
     var opt = this.getOptions();
+    var computedNodeIds = new Array();
     NodeDim.compute(this.graph, prop, this.config);
     this.graph.computeLevels(this.root, 0, "ignore");
-    this.graph.eachNode(function(n) {
+    var firstNode = Object.values(this.graph.nodes).first();
+    this.computeNode(computedNodeIds, prop, opt, firstNode, 0, -5/2);
+    this.computePositions(prop, opt, incremental);
+  },
+
+  computeNode: function(computedNodeIds, prop, opt, n, horizontalOffset, verticalOffset) {
+    if(computedNodeIds.find(n.id)){
+      return false
+    }
+    $.each(prop, function(p) {
+      var pos = n.getPos(p);
+      if(pos.equals(Complex.KER)) {
+        pos.x = (opt.width)/6 * (horizontalOffset);
+        pos.y = (opt.height)/6 * (verticalOffset) + 20;
+      }
+      //initialize disp vector
+      n.disp = {};
       $.each(prop, function(p) {
-        var pos = n.getPos(p);
-        if(pos.equals(Complex.KER)) {
-          pos.x = (opt.width)/5 * (Math.random() - 0.5);
-          pos.y = (opt.height)/5 * (Math.random() - 0.5);
-        }
-        //initialize disp vector
-        n.disp = {};
-        $.each(prop, function(p) {
-          n.disp[p] = $C(0, 0);
-        });
+        n.disp[p] = $C(0, 0);
       });
     });
-    this.computePositions(prop, opt, incremental);
+    computedNodeIds.push(n.id);
+    self = this;
+    var i = 0;
+    Object.keys(n.adjacencies).each(function(id) {
+      var _id = id;
+      i = i + 1;
+      var node = Object.values(self.graph.nodes).find(function (node) {
+        return node.id == _id;
+      });
+      if (node != undefined) {
+        self.computeNode(computedNodeIds, prop, opt, node, horizontalOffset - 2 + (i), verticalOffset + 1);
+      }
+    });
   },
   
   computePositions: function(property, opt, incremental) {
@@ -14984,8 +15004,18 @@ $jit.ForceDirected.$extend = true;
             to = adj.nodeTo.pos.getc(true),
             dim = adj.getData('dim'),
             direction = adj.data.$direction,
-            inv = (direction && direction.length>1 && direction[0] != adj.nodeFrom.id);
-        this.edgeHelper.arrow.render(from, to, dim, inv, canvas);
+            inv = (direction && direction.length>1 && direction[0] != adj.nodeFrom.id),
+            arrowTo = jQuery.extend({}, to);
+        if(to.y > from.y)
+          arrowTo.y -= 25;
+        else if (to.y < from.y)
+          arrowTo.y += 25;
+        else
+          if(to.x > from.x)
+            arrowTo.x -= 75;
+          else if (to.x < from.x)
+            arrowTo.x += 75;
+        this.edgeHelper.arrow.render(from, arrowTo, dim, inv, canvas);
       },
       'contains': function(adj, pos) {
         var from = adj.nodeFrom.pos.getc(true),

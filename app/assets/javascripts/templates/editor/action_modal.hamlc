@@ -1,0 +1,28 @@
+.btn-grid.btn-new-node
+  .btn-group.btn-group-justified
+    .btn-group
+      %button.btn.btn-default.btn-lg{'data-new-node' => 'passage'}
+        %i.glyphicon.glyphicon-road
+        Passage
+    .btn-group
+      %button.btn.btn-default.btn-lg{'data-new-node' => 'add_item'}
+        %i.glyphicon.glyphicon-plus
+        Add Item
+    .btn-group
+      %button.btn.btn-default.btn-lg{'data-new-node' => 'use_item'}
+        %i.glyphicon.glyphicon-minus
+        Use Item
+  .btn-group.btn-group-justified
+    .btn-group
+      %button.btn.btn-default.btn-lg{'data-new-node' => 'finish'}
+        %i.glyphicon.glyphicon-flag
+        Finish
+    .btn-group
+      %button.btn.btn-default.btn-lg{'data-new-node' => 'gameover'}
+        %i.glyphicon.glyphicon-flash
+        Game Over
+    .btn-group
+      %button.btn.btn-default.btn-lg{'data-existing-node' => true}
+        %i.glyphicon.glyphicon-share-alt
+        Existing
+

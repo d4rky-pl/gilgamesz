@@ -10,7 +10,7 @@
         %td= item.name
         %td= item.description
         %td
-          %a.btn.btn-xs.btn-danger{'data-action' => 'remove-item', 'data-item-id' => item.id}
+          %a.btn.btn-xs.btn-danger-inline{'data-action' => 'remove-item', 'data-item-id' => item.id}
             %i.glyphicon.glyphicon-remove
 
 .well

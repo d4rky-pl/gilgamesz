@@ -5,3 +5,8 @@
   .form-group
     %label.control-label Story
     %textarea.form-control{ type: 'text', name: 'description'}= @node.description
+
+
+  %button.btn.btn-danger.pull-right{'data-action' => 'remove-node', 'type' => 'button', 'class' => @remove_button_class}
+    %i.glyphicon.glyphicon-remove
+    Remove node
