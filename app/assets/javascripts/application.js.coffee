@@ -12,7 +12,7 @@
 #= require jquery.serializejson
 #= require bootstrap-select
 #= require_tree ./templates
-#= require adventure
-#= require adventures
+#= require index
+#= require game
 #= require editor
 #= require graph

@@ -1,0 +1,9 @@
+#= require graph
+#= require editor
+#= require sidebar
+#= require sidebar/base
+#= require sidebar/node
+#= require sidebar/node/serializers
+#= require sidebar/node/templates
+#= require sidebar/inventory
+#= require sidebar/settings
