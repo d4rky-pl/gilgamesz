@@ -14,6 +14,7 @@ class Editor.Sidebar.Node extends Editor.Sidebar.Base
 
   updateNodeFromForm: (obj) ->
     @editor.adventure.nodes[@current_index] = @serializers[@current.type](@current, obj)
+    @editor.graph.rerender()
 
   context: ->
     {

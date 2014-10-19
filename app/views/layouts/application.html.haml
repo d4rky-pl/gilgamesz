@@ -10,7 +10,7 @@
     = include_gon
     = csrf_meta_tags
 
-  %body{class: "#{params[:controller]}-#{params[:action]}"}
+  %body{class: "#{params[:controller]}-#{params[:action]} #{ @adventure.content["settings"]["game_type"] if @adventure }"}
 
     = render 'layouts/header'
 

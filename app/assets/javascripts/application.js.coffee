@@ -12,8 +12,10 @@
 #= require uuid
 #= require jquery.serializejson
 #= require bootstrap-wysihtml5
+#= require dropzone
 
 #= require_tree ./templates
 #= require index
 #= require game
 #= require editor
+#= require images

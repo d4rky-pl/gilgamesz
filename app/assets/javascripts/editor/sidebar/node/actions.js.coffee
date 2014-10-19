@@ -46,7 +46,7 @@ class Editor.Sidebar.Node.Actions
       $('button[data-new-node]').click ->
         type = $(this).data('new-node')
 
-        node = self.editor.createNode(type)
+        node = self.editor.createNode(type, self.node.id)
         self.createAction(node)
         $this.modal('hide')
 

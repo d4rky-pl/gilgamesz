@@ -3,4 +3,4 @@
     #graph
 
   .col-md-3
-    #sidebar
+    #sidebar.clearfix

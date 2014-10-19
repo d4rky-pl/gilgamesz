@@ -38,12 +38,12 @@ class Editor
   getNode: (id) ->
     Editor.Utils.find(@adventure.nodes, id)
 
-  createNode: (type, data={}) ->
+  createNode: (type, parent, data={}) ->
     obj = $.extend(true, {}, Editor.Sidebar.Node.Templates[type], data)
     obj.id = "#{obj.type}-#{uuid.v4()}"
 
     @adventure.nodes.push(obj)
-    @parents_map[obj.id] = []
+    @parents_map[obj.id] = [parent]
 
     @selectNode(obj.id)
     obj
@@ -75,7 +75,6 @@ class Editor
     else if node.actions
       action_count = node.actions.length
 
-    debugger
     action_count == 0
 
   removeLinksToNode: (node) ->

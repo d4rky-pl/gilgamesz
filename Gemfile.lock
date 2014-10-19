@@ -66,6 +66,8 @@ GEM
     columnize (0.8.9)
     debug_inspector (0.0.2)
     debugger-linecache (1.2.0)
+    dropzonejs-rails (0.5.1)
+      rails (> 3.1)
     erubis (2.7.0)
     execjs (2.2.2)
     gon (5.2.0)
@@ -178,6 +180,7 @@ DEPENDENCIES
   bootstrap_form
   carrierwave
   coffee-rails (~> 4.0.0)
+  dropzonejs-rails
   execjs
   gon
   haml-rails
