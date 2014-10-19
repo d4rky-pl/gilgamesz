@@ -10,7 +10,7 @@ class Graph
   bindEvents: ->
     self = this
     @$element.on 'click', '.node', ->
-      if self.selectionModeEnabled?
+      if self.selectionModeEnabled
         self.selectionModeCb.call(this, $(this).data('id'))
         @selectionModeEnabled = false
       else

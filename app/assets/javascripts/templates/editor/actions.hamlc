@@ -1,0 +1,23 @@
+.form-separator
+  %h5 Actions
+
+- for action in @actions
+  .well
+    .row
+      .col-xs-12
+        %textarea.form-control{type: 'text', name: "#{@namespace}[#{action.id}][description]" }= action.description
+    .row
+      .col-md-10
+        %a.text-muted{'data-action' => 'set-node', 'data-action-node-id' => action.node_id}
+          %i.glyphicon.glyphicon-share-alt
+          = @node_name(action.node_id)
+
+      .col-md-2.text-right
+        %a.btn.btn-xs.btn-danger-inline
+          %i.glyphicon.glyphicon-remove{'data-action' => 'remove', 'data-action-id' => action.id}
+
+
+%button{type: 'button', class: 'btn btn-success'}
+  %i.glyphicon.glyphicon-plus
+  Add new action
+

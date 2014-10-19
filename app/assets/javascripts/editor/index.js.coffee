@@ -1,9 +1,11 @@
 #= require ./graph
 #= require ./editor
+#= require ./utils
 #= require ./sidebar
 #= require ./sidebar/base
 #= require ./sidebar/node
 #= require ./sidebar/node/serializers
 #= require ./sidebar/node/templates
+#= require ./sidebar/node/actions
 #= require ./sidebar/inventory
 #= require ./sidebar/settings

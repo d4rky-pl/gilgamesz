@@ -3,8 +3,8 @@ class Editor.Sidebar.Settings extends Editor.Sidebar.Base
 
   context: ->
     {
-    settings: @editor.adventure.settings,
-    game_types: @editor.GAME_TYPES
+      settings: @editor.adventure.settings,
+      game_types: Editor.GAME_TYPES
     }
 
   afterRender: ->

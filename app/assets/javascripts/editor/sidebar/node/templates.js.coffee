@@ -1,12 +1,14 @@
 Editor.Sidebar.Node.Templates = {
   passage: {
     type: 'passage'
+    name: 'New passage'
     description: 'You are here.'
     actions: []
   },
   add_item: {
     type: 'add_item'
     item_id: null
+    name: 'New add item'
     events: {
       add_item: {
         description: 'You have found an item.'
@@ -21,6 +23,7 @@ Editor.Sidebar.Node.Templates = {
   use_item: {
     type: 'use_item'
     item_id: null
+    name: 'New use item'
     events: {
       use_item: {
         description: 'You are using item.'
@@ -37,10 +40,12 @@ Editor.Sidebar.Node.Templates = {
     }
   },
   gameover: {
+    name: 'New game over'
     type: 'gameover'
     description: 'Game over. You lost.'
   },
   finish: {
+    name: 'New finish'
     type: 'finish'
     description: 'You won.'
   }

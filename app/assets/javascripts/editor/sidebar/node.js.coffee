@@ -4,17 +4,11 @@ class Editor.Sidebar.Node extends Editor.Sidebar.Base
 
   constructor: (@editor, @container) ->
     super
-    @current = @editor.adventure.nodes[0]
+    @current = @editor.root_node
     @serializers = new Editor.Sidebar.Node.Serializers(@editor)
 
-  createNewNode: (type) ->
-    obj = $.extend(true, {}, Editor.Sidebar.Node.Templates[type])
-    obj.id = "#{obj.type}-#{uuid.v4()}"
-    @editor.adventure.nodes.push(obj)
-    setNode(obj.id)
-
   setNode: (id) ->
-    @current_index = @_nodeIndex(id)
+    @current_index = Editor.Utils.findIndex(@editor.adventure.nodes, id)
     @current = @editor.adventure.nodes[@current_index]
     @render()
 
@@ -25,28 +19,25 @@ class Editor.Sidebar.Node extends Editor.Sidebar.Base
     {
       node: @current
       items: @editor.adventure.items
+      remove_button_class: ('disabled' unless @show_delete_button)
     }
 
   beforeRender: ->
     @template = "node/#{@current.type}"
+    @show_delete_button = @editor.canNodeBeDeleted(@current)
 
   afterRender: ->
     self = this
     @form = $('form', @container)
 
+    $('[data-action-box]').each ->
+      (new Editor.Sidebar.Node.Actions($(this), self.editor, self.current)).render()
+
     $(':input', @container).change =>
       @updateNodeFromForm(@form.serializeJSON())
 
+    $('[data-action="remove-node"]').click (e) ->
+      e.preventDefault();
+      self.editor.removeNode(self.current.id)
+
     $('.selectpicker', @container).selectpicker()
-
-  _nodeIndex: (id) ->
-    node_index = -1
-    @editor.adventure.nodes.each (node, i) ->
-      if node.id == id
-        node_index = i
-        false
-      else
-        true
-    node_index
-
-

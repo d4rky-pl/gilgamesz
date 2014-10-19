@@ -54,7 +54,7 @@ body.adventures-edit, body.adventures-new {
       margin-bottom: 2em;
       text-align: center;
 
-      h4 {
+      h1,h2,h3,h4,h5,h6 {
         background: white;
         position: relative;
         top: -0.5em;
@@ -64,6 +64,25 @@ body.adventures-edit, body.adventures-new {
       }
     }
   }
+
+  .btn-new-node.btn-grid {
+    .glyphicon {
+      font-size: 70px;
+      display: block;
+      margin: 20px 0;
+    }
+  }
+
+  .btn-remove-node {
+    margin-top: -($line-height-base * 1em + 1em);
+    float: right;
+
+    &.disabled {
+      cursor: initial;
+      pointer-events: initial;
+    }
+  }
+
 
   #graph {
     width: 100%;
