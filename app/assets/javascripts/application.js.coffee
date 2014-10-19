@@ -11,6 +11,7 @@
 #= require bootbox
 #= require uuid
 #= require jquery.serializejson
+#= require bootstrap-wysihtml5
 
 #= require_tree ./templates
 #= require index

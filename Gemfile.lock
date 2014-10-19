@@ -1,3 +1,10 @@
+GIT
+  remote: git://github.com/Nerian/bootstrap-wysihtml5-rails.git
+  revision: 1c7cb98c6aafbf4e67125c1dea1c9c910319c9be
+  specs:
+    bootstrap-wysihtml5-rails (0.3.3.1)
+      railties (>= 3.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -167,6 +174,7 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   bootstrap-sass
+  bootstrap-wysihtml5-rails!
   bootstrap_form
   carrierwave
   coffee-rails (~> 4.0.0)

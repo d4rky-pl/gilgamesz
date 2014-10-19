@@ -41,3 +41,8 @@ class Editor.Sidebar.Node extends Editor.Sidebar.Base
       self.editor.removeNode(self.current.id)
 
     $('.selectpicker', @container).selectpicker()
+    $('textarea', @container).wysihtml5
+      'toolbar':
+        'font-styles': false
+        'lists': false
+        'size': 'sm'
