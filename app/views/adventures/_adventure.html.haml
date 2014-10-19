@@ -5,11 +5,8 @@
         = adventure.content["settings"]["name"]
       .adventure-info
         .adventure-image{ class: adventure.content["settings"]["game_type"] }
-        %p.adventure-description
-          The Census and Excise is an establishment operated by the Empire
-          in an attempt to manage census counting for tax/excise purposes.
-          Imperial taxes are based on head counts of citizens;
-          Census and Excise is responsible for both head!
+        %p.adventure-description= adventure.content["settings"]["description"]
+
     .adventure-footer
       = adventure.content["settings"]["game_type"]
       .pull-right.counter{id: "adventure-counter-#{ adventure.id }"}
