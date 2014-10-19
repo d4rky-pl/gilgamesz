@@ -284,15 +284,32 @@ body.adventures-index {
 
           .adventure-image {
             position: absolute;
-            visibility: visible;
+            opacity: 1;
             width: 100%;
             height: 100%;
             background-size: contain;
             background-position: top center;
+            -webkit-transition: opacity 0.5s;
+            transition: opacity 0.5s;
+
+            &.fantasy {
+              background-image: url(image_path("fantasy.jpg"));
+              background-size: cover;
+            }
+
+            &.scifi {
+              background-image: url(image_path("detective.jpg"));
+              background-size: cover;
+            }
+
+            &.detective {
+              background-image: url(image_path("detective.jpg"));
+              background-size: cover;
+            }
           }
 
           .adventure-description {
-            visibility: hidden;
+            opacity: 0;
             padding: 10px;
             background: #eeebdf;
             font-style: italic;
@@ -304,11 +321,11 @@ body.adventures-index {
 
           &:hover {
             .adventure-image {
-              visibility: hidden;
+              opacity: 0;
             }
 
             .adventure-description {
-              visibility: visible;
+              opacity: 1;
             }
           }
 
