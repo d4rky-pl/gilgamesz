@@ -4,7 +4,7 @@
       %p.adventure-name
         = adventure.content["settings"]["name"]
       .adventure-info
-        .adventure-image{style: "background: url(#{ "http://www.theparanoidgamer.com/wp-content/uploads/2011/07/840935-tibia_super.jpg" })"}
+        .adventure-image{ class: adventure.content["settings"]["game_type"] }
         %p.adventure-description
           The Census and Excise is an establishment operated by the Empire
           in an attempt to manage census counting for tax/excise purposes.
