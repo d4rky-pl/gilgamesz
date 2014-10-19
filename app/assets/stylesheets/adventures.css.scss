@@ -298,8 +298,7 @@ body.adventures-index {
 
 body.adventures-show {
   background: url(image_path("game-background.png"));
-  background-position: fixed;
-  background-size: 100% 100%;
+  background-size: cover;
 
   .game-container {
     position: relative;
@@ -317,6 +316,7 @@ body.adventures-show {
         padding: 4px 8px;
         position: relative;
         border-radius: 4px;
+        z-index: 1;
 
         &:before {
           content: '';
@@ -348,24 +348,75 @@ body.adventures-show {
       margin-top: -16px;
       border-radius: 0;
       border: 0;
-      padding: 0;
+      padding: 0 0 20px;
 
       .panel-photo {
         background: url(image_path("poster.png"));
         width: 100%;
         min-height: 310px;
-        background-size: 100% 100%;
+        background-size: cover;
         position: relative;
 
         &:after {
           position: absolute;
           content: '';
-          bottom: 0;
+          bottom: -18px;
           width: 56px;
           height: 56px;
           left: calc(50% - 28px);
           border-radius: 40px;
           background: #0e0805;
+        }
+      }
+
+      .message {
+        font-family: 'ringbearer';
+        font-size: 26px;
+        color: #ca3400;
+        text-align: center;
+        margin: 14px 0;
+      }
+
+      .panel-body {
+        background: url(image_path('adventure-index-body.png')) repeat;
+        margin: 15px 15px 0;
+        padding: 22px 20px 48px;
+
+        .list-group-item, a.list-group-item {
+          background: transparent;
+          border: 1px solid #a5a08d;
+          font-family: 'Lato', sans-serif;
+          font-size: 18px;
+          color: #0b0604;
+
+          &:hover {
+            background: rgba(0,0,0,0.1);
+          }
+
+          p {
+            font-family: 'Lato', sans-serif;
+            font-size: 18px;
+            color: #0b0604;
+          }
+        }
+
+        h3 {
+          font-family: 'Lato', sans-serif;
+          font-size: 18px;
+          color: #0b0604;
+        }
+
+        .media-body {
+          font-family: 'Lato', sans-serif;
+          font-size: 14px;
+          color: #0b0604;
+        }
+
+        .inventory {
+          .thumbnail {
+            background: transparent;
+            border: 0;
+          }
         }
       }
     }

@@ -5,9 +5,9 @@
 
   .panel.panel-default
     .panel-photo
-    .panel-body
+    .message
       != @message
-
+    .panel-body
       - if @event == 'add_item'
         %h3 You've gained a new item!
         .media
@@ -35,8 +35,8 @@
           - @actions.each (action) ->
             %a.list-group-item{"data-action" => "move", "data-node-id" => action.node_id}!= action.description
 
-  .well.inventory
-    %h3 Inventory
-    - @inventory.each (item) ->
-      .thumbnail{"data-toggle" => "popover", "data-trigger" => "hover", "title" => item.name, "data-content" => item.description, "data-placement" => "top"}
-        %img{src: item.image}
+      .inventory
+        %h3 Inventory
+        - @inventory.each (item) ->
+          .thumbnail{"data-toggle" => "popover", "data-trigger" => "hover", "title" => item.name, "data-content" => item.description, "data-placement" => "top"}
+            %img{src: item.image}
