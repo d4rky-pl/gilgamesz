@@ -13,6 +13,7 @@ class Editor.Sidebar.Node extends Editor.Sidebar.Base
     @render()
 
   updateNodeFromForm: (obj) ->
+    console.log(obj)
     @editor.adventure.nodes[@current_index] = @serializers[@current.type](@current, obj)
     @editor.graph.rerender()
 
@@ -51,3 +52,6 @@ class Editor.Sidebar.Node extends Editor.Sidebar.Base
             'font-styles': false
             'lists': false
             'size': 'sm'
+          'events':
+            'blur': ->
+              self.updateNodeFromForm(self.form.serializeJSON())

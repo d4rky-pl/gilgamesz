@@ -63,6 +63,7 @@ class Editor.Sidebar.Node.Actions
 
   render: ->
     self = this
+    @form = @editor.sidebar.tabs.node.form
     @container.html(JST['editor/actions'](
       actions: @actions()
       namespace: @input_namespace()
@@ -91,6 +92,9 @@ class Editor.Sidebar.Node.Actions
             'font-styles': false
             'lists': false
             'size': 'sm'
+          'events':
+            'blur': ->
+              self.editor.sidebar.tabs.node.updateNodeFromForm(self.form.serializeJSON())
 
 
   actions: ->

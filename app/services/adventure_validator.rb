@@ -4,8 +4,9 @@ class AdventureValidator
   class InvalidGameType < StandardError; end
   class InvalidItem < StandardError; end
 
-  def initialize(json)
-    @json = json
+  def initialize(adventure, json)
+    @adventure = adventure
+    @json = JSON.parse(json)
   end
 
   def valid?
@@ -16,7 +17,7 @@ class AdventureValidator
   end
 
   def validate!
-    validate_unique_name!
+    #validate_unique_name!
     validate_passages!
     true
   end
@@ -35,7 +36,11 @@ class AdventureValidator
   end
   
   def validate_unique_name!
-    raise NameTaken unless Adventure.where("content->'settings'->>'name' = ?", settings['name']).count == 0
+    if @adventure.new_record?
+      raise NameTaken unless Adventure.where("content->'settings'->>'name' = ?", settings['name']).count == 0
+    else
+      raise NameTaken unless Adventure.where("content->'settings'->>'name' = ? AND id != ?", settings['name'], @adventure.id).count == 0
+    end
   end
   
   def validate_game_type!

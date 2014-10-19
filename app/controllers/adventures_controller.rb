@@ -21,7 +21,7 @@ class AdventuresController < ApplicationController
 
   def create
     @adventure = Adventure.new(content: params[:json], token: params[:token])
-    if AdventureValidator.new(params[:json]).validate!
+    if AdventureValidator.new(@adventure, params[:json]).validate!
       @adventure.save!
       redirect_to @adventure
     end
@@ -29,7 +29,7 @@ class AdventuresController < ApplicationController
 
   def update
     @adventure = Adventure.where('token = ?', params[:id]).first
-    if AdventureValidator.new(params[:json]).validate!
+    if AdventureValidator.new(@adventure, params[:json]).validate!
       @adventure.update!(content: params[:json])
       redirect_to @adventure
     end

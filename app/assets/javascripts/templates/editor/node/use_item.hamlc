@@ -7,8 +7,9 @@
     %label.control-label Item
     %select.form-control.selectpicker{name: 'item_id'}
       %option{value: null}= "None"
+      - item_id = @node.item_id
       - @items.each (item) ->
-        %option{value: item.id, 'data-content': "<img src='#{asset_path('items/' + item.image)}'> <b>#{item.name}</b>"}= item.name
+        %option{value: item.id, 'data-content': "<img src='#{asset_path('items/' + item.image)}'> <b>#{item.name}</b>", 'selected': (item_id == item.id)}= item.name
 
   .checkbox
     %label
