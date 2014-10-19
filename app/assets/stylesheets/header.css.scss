@@ -4,13 +4,16 @@
   background: url(image_path('header.png')) repeat-x;
   margin-bottom: 0;
 
-  .container {
+  .container, .container-fluid {
     padding-bottom: 20px;
+  }
+
+  .container {
     padding: 0 0 40px;
   }
 
-  .container-fluid {
-    padding: 0;
+  .navbar-brand {
+    margin-top: -5px;
   }
 
   .navbar-nav li {

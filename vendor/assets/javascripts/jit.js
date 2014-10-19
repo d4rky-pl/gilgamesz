@@ -14346,7 +14346,7 @@ Layouts.ForceDirected = new Class({
     NodeDim.compute(this.graph, prop, this.config);
     this.graph.computeLevels(this.root, 0, "ignore");
     var firstNode = Object.values(this.graph.nodes).first();
-    this.computeNode(computedNodeIds, prop, opt, firstNode, 0, 0);
+    this.computeNode(computedNodeIds, prop, opt, firstNode, 0, -5/2);
     this.computePositions(prop, opt, incremental);
   },
 
@@ -14358,7 +14358,7 @@ Layouts.ForceDirected = new Class({
       var pos = n.getPos(p);
       if(pos.equals(Complex.KER)) {
         pos.x = (opt.width)/5 * (horizontalOffset);
-        pos.y = (opt.height)/5 * (verticalOffset);
+        pos.y = (opt.height)/5 * (verticalOffset) + 30;
         console.log(pos.x, pos.y, horizontalOffset, verticalOffset, Complex.KER);
       }
       //initialize disp vector
