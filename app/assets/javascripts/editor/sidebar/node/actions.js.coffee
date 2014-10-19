@@ -83,6 +83,16 @@ class Editor.Sidebar.Node.Actions
       e.preventDefault()
       self.modal()
 
+    $('textarea', @container).each ->
+      $this = $(this)
+      if $this.next().attr('name') != "_wysihtml5_mode"
+        $this.wysihtml5
+          'toolbar':
+            'font-styles': false
+            'lists': false
+            'size': 'sm'
+
+
   actions: ->
     if @namespace
       @node.events[@namespace].actions

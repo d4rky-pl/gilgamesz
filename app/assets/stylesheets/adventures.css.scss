@@ -162,6 +162,11 @@ body.adventures-edit, body.adventures-new {
       }
     }
   }
+  #editor > .editor-buttons {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+  }
 }
 
 body.adventures-index {
