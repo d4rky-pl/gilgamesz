@@ -6435,7 +6435,7 @@ var EdgeHelper = {
           to = tmp;
         }
         var vect = new Complex(to.x - from.x, to.y - from.y);
-        vect.$scale(dim / vect.norm());
+        vect.$scale(dim / 1.5 / vect.norm());
         var intermediatePoint = new Complex(to.x - vect.x, to.y - vect.y),
             normal = new Complex(-vect.y / 2, vect.x / 2),
             v1 = intermediatePoint.add(normal), 

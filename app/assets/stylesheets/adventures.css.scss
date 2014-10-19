@@ -27,7 +27,7 @@ body.adventures-edit, body.adventures-new {
   background-size: cover;
 
   & > .container-fluid {
-    height: 100%;
+    height: calc(100% - 70px);
     & > #editor {
       height: 100%;
       & > .row {
@@ -39,12 +39,30 @@ body.adventures-edit, body.adventures-new {
     }
   }
   #sidebar {
-    background: white;
-    padding: 1em;
     border-radius: 3px;
 
+    .nav-tabs {
+      margin: 0 -1px;
+      li {
+        a {
+          font-family: "Lato", Helvetica, Arial, sans-serif;
+          text-transform: uppercase;
+          font-weight: bold;
+          color: black;
+          background: #eeebdf;
+        }
+        &.active a{
+          background: white;
+        }
+      }
+      li + li{
+        border-left: 2px solid transparent;
+      }
+    }
+
     .tab-content {
-      margin-top: 10px
+      padding: 1em;
+      background: white;
     }
 
     .form-separator {
