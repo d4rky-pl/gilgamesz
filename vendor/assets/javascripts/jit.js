@@ -14346,7 +14346,11 @@ Layouts.ForceDirected = new Class({
     NodeDim.compute(this.graph, prop, this.config);
     this.graph.computeLevels(this.root, 0, "ignore");
     var firstNode = Object.values(this.graph.nodes).first();
-    this.computeNode(computedNodeIds, prop, opt, firstNode, 0, -5/2);
+    window.nodesToCompute = [[computedNodeIds, prop, opt, firstNode, 0, -5/2]];
+    while(nodesToCompute.length > 0){
+      var options = nodesToCompute.shift();
+      this.computeNode(options[0], options[1], options[2], options[3], options[4], options[5]);
+    }
     this.computePositions(prop, opt, incremental);
   },
 
@@ -14376,7 +14380,7 @@ Layouts.ForceDirected = new Class({
         return node.id == _id;
       });
       if (node != undefined) {
-        self.computeNode(computedNodeIds, prop, opt, node, horizontalOffset - 2 + (i), verticalOffset + 1);
+        nodesToCompute.push([computedNodeIds, prop, opt, node, horizontalOffset - 2 + (i), verticalOffset + 1]);
       }
     });
   },
@@ -15000,22 +15004,23 @@ $jit.ForceDirected.$extend = true;
     },
     'arrow': {
       'render': function(adj, canvas) {
-        var from = adj.nodeFrom.pos.getc(true),
-            to = adj.nodeTo.pos.getc(true),
-            dim = adj.getData('dim'),
-            direction = adj.data.$direction,
+        var direction = adj.data.$direction,
             inv = (direction && direction.length>1 && direction[0] != adj.nodeFrom.id),
+            from = inv ? adj.nodeTo.pos.getc(true) : adj.nodeFrom.pos.getc(true),
+            to = inv ? adj.nodeFrom.pos.getc(true) : adj.nodeTo.pos.getc(true),
+            dim = adj.getData('dim'),
             arrowTo = jQuery.extend({}, to);
-        if(to.y > from.y)
+        if(to.y > from.y) {
           arrowTo.y -= 25;
-        else if (to.y < from.y)
+        }else if (to.y < from.y) {
           arrowTo.y += 25;
-        else
-          if(to.x > from.x)
+        }else {
+          if (to.x > from.x)
             arrowTo.x -= 75;
           else if (to.x < from.x)
             arrowTo.x += 75;
-        this.edgeHelper.arrow.render(from, arrowTo, dim, inv, canvas);
+        }
+        this.edgeHelper.arrow.render(from, arrowTo, dim, false, canvas);
       },
       'contains': function(adj, pos) {
         var from = adj.nodeFrom.pos.getc(true),

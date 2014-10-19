@@ -33,8 +33,6 @@ class Graph
       Navigation:
         enable: true
         panning: "avoid nodes"
-      Node:
-        overridable: false
       Edge:
         type: 'arrow'
         overridable: true
@@ -92,11 +90,19 @@ class Graph
     if node.events
       Object.values(node.events).map((event) ->
         event.actions.map (action) ->
-          action.node_id
+          {
+            "nodeTo": action.node_id
+            "data":
+              "$direction": [node.id, action.node_id]
+          }
       ).flatten()
     else if node.actions
       node.actions.map (action) ->
-        action.node_id
+        {
+          "nodeTo": action.node_id
+          "data":
+            "$direction": [node.id, action.node_id]
+        }
     else
       []
 
