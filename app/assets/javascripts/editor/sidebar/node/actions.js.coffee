@@ -27,7 +27,10 @@ class Editor.Sidebar.Node.Actions
       @editor.rerender()
       @render()
     else
-      bootbox.alert("<p>Action can only be removed if the node it connects to has any other connections.</p><p>Please remove the node this action is referring to first.</p>")
+      if action.node_id == @editor.root_node
+        bootbox.alert("<p>You cannot remove the beginning node.</p>")
+      else
+        bootbox.alert("<p>Action can only be removed if the node it connects to has any other connections.</p><p>Please remove the node this action is referring to first.</p>")
 
   canActionBeDeleted: (action) ->
     @editor.nodeParentsCount(action.node_id) > 1 || action.node_id == @editor.root_node
