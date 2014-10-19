@@ -33,6 +33,7 @@ class Graph
       Navigation:
         enable: true
         panning: "avoid nodes"
+        zooming: 10
       Edge:
         type: 'arrow'
         overridable: true
