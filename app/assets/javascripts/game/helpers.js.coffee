@@ -1,19 +1,18 @@
 class Game.Helpers
   constructor: (game) ->
     @game = game
-    @state = @game.state
 
   addItem: ->
-    @state.inventory.add(@state.node.item_id)
+    @game.state.inventory.add(@game.state.node.item_id)
 
   removeItem: ->
-    @state.inventory.remove(@state.node.item_id)
+    @game.state.inventory.remove(@game.state.node.item_id)
 
   hasItem: ->
-    @state.inventory.has(@state.node.item_id)
+    @game.state.inventory.has(@game.state.node.item_id)
 
   this_already_happened: ->
-    !!@state.past[@state.node.id]
+    !!@game.state.past[@game.state.node.id]
 
   happened: ->
-    @state.past[@state.node.id] = true
+    @game.state.past[@game.state.node.id] = true
