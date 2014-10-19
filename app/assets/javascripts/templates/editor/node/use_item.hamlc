@@ -10,6 +10,11 @@
       - @items.each (item) ->
         %option{value: item.id, 'data-content': "<img src='#{asset_path('items/' + item.image)}'> <b>#{item.name}</b>"}= item.name
 
+  .checkbox
+    %label
+      %input{type: 'checkbox', name: 'remove_after', checked: @node.remove_after }
+      Remove the item from inventory after it's used
+
   .form-separator
     %h4 Use item
 

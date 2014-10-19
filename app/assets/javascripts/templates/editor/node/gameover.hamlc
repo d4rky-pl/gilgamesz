@@ -10,3 +10,5 @@
   %button.btn.btn-danger.pull-right{'data-action' => 'remove-node', 'type' => 'button', 'class' => @remove_button_class}
     %i.glyphicon.glyphicon-remove
     Remove node
+
+  %button.btn.btn-default.disabled{'type' => 'button'} This node cannot have actions

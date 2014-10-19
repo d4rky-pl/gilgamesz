@@ -18,6 +18,7 @@ class Editor.Sidebar.Node.Serializers
   use_item: (node, form_data) ->
     node.name = form_data.name
     node.item_id = form_data.node_id || null
+    node.remove_after = !!form_data.remove_after
 
     ['use_item', 'already_used_item', 'no_item'].each (event_name) ->
       node.events[event_name].description          = form_data[event_name].description

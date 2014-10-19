@@ -4,3 +4,10 @@
 
   .col-md-3
     #sidebar.clearfix
+
+.editor-buttons
+  %button.btn.btn-primary{'data-editor-save' => true}
+    %i.glyphicon.glyphicon-save
+    Save and Publish
+
+

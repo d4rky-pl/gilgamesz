@@ -19,8 +19,37 @@ class Editor
     @graph   = new Graph(this, '#graph')
 
     @createParentsMap()
+    @bindSaveButton()
 
     window._editor = this
+
+  bindSaveButton: ->
+    self = this
+    $('[data-editor-save]', @container).click ->
+      bootbox.dialog(
+        title: 'You are almost there'
+        message: """
+          <p>If you ever want to go back to editing your story, bookmark the link below:</p>
+          <p><input type="text" class="form-control" value="#{gon.edit_url}"></p>
+
+        """
+        buttons: {
+          publish: {
+            label: 'OK, save and publish!'
+            className: 'btn-primary'
+            callback: ->
+              self.submit()
+          },
+          cancel: {
+            label: "I'm not done yet"
+            className: 'btn-default'
+          }
+        }
+      )
+
+  submit: ->
+    $('#editor-adventure-json').val(JSON.stringify(_editor.adventure))
+    $('#editor-adventure-form').submit()
 
   render: ->
     @sidebar.render()
@@ -45,7 +74,6 @@ class Editor
     @adventure.nodes.push(obj)
     @parents_map[obj.id] = [parent]
 
-    @selectNode(obj.id)
     obj
 
   removeNode: (id) ->

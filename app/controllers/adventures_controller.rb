@@ -9,14 +9,30 @@ class AdventuresController < ApplicationController
   end
 
   def new
-    @adventure = Adventure.new(content: Adventure::EMPTY_JSON)
+    @adventure = Adventure.new(content: Adventure::EMPTY_JSON, token: SecureRandom.hex(10))
     set_gon_attributes
     render action: 'edit'
   end
 
   def edit
-    @adventure = Adventure.find(params[:id])
+    @adventure = Adventure.where('token = ?', params[:id]).first
     set_gon_attributes
+  end
+
+  def create
+    @adventure = Adventure.new(content: params[:json], token: params[:token])
+    if AdventureValidator.new(params[:json]).validate!
+      @adventure.save!
+      redirect_to @adventure
+    end
+  end
+
+  def update
+    @adventure = Adventure.where('token = ?', params[:id]).first
+    if AdventureValidator.new(params[:json]).validate!
+      @adventure.update!(content: params[:json])
+      redirect_to @adventure
+    end
   end
 
   def show
@@ -37,7 +53,7 @@ class AdventuresController < ApplicationController
   private
 
   def set_gon_attributes
-    gon.push adventure: @adventure.content, available_images: available_images
+    gon.push adventure: @adventure.content, edit_url: edit_adventure_url(@adventure.token), available_images: available_images
   end
 
   def adventure_params

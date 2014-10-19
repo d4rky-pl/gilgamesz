@@ -22,8 +22,9 @@ Editor.Sidebar.Node.Templates = {
   },
   use_item: {
     type: 'use_item'
-    item_id: null
     name: 'New use item'
+    item_id: null
+    remove_after: true
     events: {
       use_item: {
         description: 'You are using item.'
