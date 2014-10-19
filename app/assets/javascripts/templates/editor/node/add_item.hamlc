@@ -10,23 +10,28 @@
       - @items.each (item) ->
         %option{value: item.id, 'data-content': "<img src='#{asset_path('items/' + item.image)}'> <b>#{item.name}</b>"}= item.name
 
-  .form-separator
-    %h4 Add item
+  .accordion
+    .form-separator
+      %h4
+        %a{ data: { toggle: "collapse", parent: "#accordion" }, href: "#add-item" } Add item
 
-  .form-group
-    %label.control-label Story
-    %textarea.form-control{ type: 'text', name: 'add_item[description]'}= @node.events.add_item.description
+    #add-item.collapse.in
+      .form-group
+        %label.control-label Story
+        %textarea.form-control{ type: 'text', name: 'add_item[description]'}= @node.events.add_item.description
 
-  %div{'data-action-box' => true, 'data-action-box-namespace' => 'add_item'}
+      %div{'data-action-box' => true, 'data-action-box-namespace' => 'add_item'}
 
-  .form-separator
-    %h4 Already has item
+    .form-separator
+      %h4
+        %a{ data: { toggle: "collapse", parent: "#accordion" }, href: "#already-has-item" } Already has item
 
-  .form-group
-    %label.control-label Story
-    %textarea.form-control{ type: 'text', name: 'already_has_item[description]'}= @node.events.already_has_item.description
+    #already-has-item.collapse.in
+      .form-group
+        %label.control-label Story
+        %textarea.form-control{ type: 'text', name: 'already_has_item[description]'}= @node.events.already_has_item.description
 
-  %div{'data-action-box' => true, 'data-action-box-namespace' => 'already_has_item'}
+      %div{'data-action-box' => true, 'data-action-box-namespace' => 'already_has_item'}
 
   %button.btn.btn-danger.btn-remove-node{'data-action' => 'remove-node', 'type' => 'button', 'class' => @remove_button_class}
     %i.glyphicon.glyphicon-remove
