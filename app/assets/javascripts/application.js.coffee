@@ -11,10 +11,12 @@
 #= require bootbox
 #= require uuid
 #= require jquery.serializejson
-#= require dropzone
+#= require utils
+#= require tether
+#= require shepherd
 
 #= require_tree ./templates
 #= require index
 #= require game
 #= require editor
-#= require images
+#= require editor_tour
