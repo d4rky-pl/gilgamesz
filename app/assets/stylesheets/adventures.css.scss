@@ -399,6 +399,12 @@ body.adventures-show {
         margin: 15px 15px 0;
         padding: 22px 20px 48px;
 
+        p {
+          font-family: 'Lato', sans-serif;
+          font-size: 18px;
+          color: #0b0604;
+        }
+
         .list-group-item, a.list-group-item {
           background: transparent;
           border: 1px solid #a5a08d;
@@ -408,12 +414,6 @@ body.adventures-show {
 
           &:hover {
             background: rgba(0,0,0,0.1);
-          }
-
-          p {
-            font-family: 'Lato', sans-serif;
-            font-size: 18px;
-            color: #0b0604;
           }
         }
 

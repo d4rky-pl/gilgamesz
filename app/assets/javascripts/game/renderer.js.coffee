@@ -23,6 +23,7 @@ class Game.Renderer
 
     context = {
       game_name: @game.settings.name
+      name: node.name
       type: node.type
       event: event
     }

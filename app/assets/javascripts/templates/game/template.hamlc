@@ -6,8 +6,9 @@
   .panel.panel-default
     .panel-photo
     .message
-      != @message
+      = @name
     .panel-body
+      != @message
       - if @event == 'add_item'
         %h3 You've gained a new item!
         .media
