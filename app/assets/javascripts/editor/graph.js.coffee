@@ -9,6 +9,10 @@ class Graph
 
   bindEvents: ->
     self = this
+
+    $(window).on 'resize', ->
+      self.rerender()
+
     @$element.on 'click', '.node', ->
       if self.selectionModeEnabled
         self.selectionModeCb.call(this, $(this).data('id'))
@@ -35,7 +39,7 @@ class Graph
         type: 'arrow'
         overridable: true
         color: "#8f8f8f"
-        lineWidth: 4
+        lineWidth: 2
       Label:
         type: "HTML"
         size: 10

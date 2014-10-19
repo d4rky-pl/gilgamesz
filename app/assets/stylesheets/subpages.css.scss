@@ -1,5 +1,6 @@
 body.subpages-help {
-  background: url(image_path('adventure-index-body.png')) repeat;
+  background: url(image_path('adventure-index-body.png'));
+  background-size: cover;
 
   h2 {
     font-family: 'ringbearer';
@@ -15,7 +16,8 @@ body.subpages-help {
 }
 
 body.subpages-about {
-  background: url(image_path('adventure-index-body.png')) repeat;
+  background: url(image_path('adventure-index-body.png'));
+  background-size: cover;
 
   h2 {
     font-family: 'ringbearer';

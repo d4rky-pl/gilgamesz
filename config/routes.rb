@@ -7,4 +7,6 @@ Rails.application.routes.draw do
 
   match '/help', to: 'subpages#help', via: :get, as: :help
   match '/about', to: 'subpages#about', via: :get, as: :about
+
+  match '/images', to: 'images#create', via: :post, as: :images
 end
