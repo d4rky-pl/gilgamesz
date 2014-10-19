@@ -2,7 +2,6 @@ class AdventuresController < ApplicationController
   before_action :fluid_layout, only: [:edit, :new]
 
   def index
-    raise request.ip
     @adventures = Adventure.order('created_at DESC').paginate(page: params[:page], per_page: 9)
     @played_adventures = (session[:played_adventures]) ? Adventure.find(played_adventures)[0..8] : [];
     @best_adventures = Adventure.all.order('plays DESC').limit(9)
