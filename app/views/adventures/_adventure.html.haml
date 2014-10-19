@@ -5,7 +5,7 @@
         = adventure.content["settings"]["name"]
       .adventure-info
         .adventure-image{ class: adventure.content["settings"]["game_type"] }
-        %p.adventure-description= adventure.content["settings"]["description"]
+        %p.adventure-description= truncate((adventure.content["settings"]["description"].to_s rescue ""), length: 140)
 
     .adventure-footer
       = adventure.content["settings"]["game_type"]
