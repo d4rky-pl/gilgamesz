@@ -171,6 +171,13 @@ body.adventures-edit, body.adventures-new {
     position: fixed;
     bottom: 20px;
     left: 20px;
+
+    .btn.btn-primary{
+      background: #ca3400;
+      border: 1px solid #A1401E;
+      outline: 0;
+      font-family: 'Lato', sans-serif;
+    }
   }
 }
 
