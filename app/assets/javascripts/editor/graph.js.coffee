@@ -82,7 +82,7 @@ class Graph
   translateNode: (node) ->
     {
       id: node.id
-      name: node.description || node.type
+      name: node.name
       data:
         type: node.type
       adjacencies: @actions(node)

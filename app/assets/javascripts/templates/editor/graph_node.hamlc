@@ -4,4 +4,4 @@
       = @node.name.stripTags().first(15) + '...'
     - else
       = @node.name.stripTags()
-  .type= @node.data.type
+  .type= @node.data.type.replace('_', ' ')
