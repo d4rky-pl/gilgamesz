@@ -61,7 +61,7 @@ class AdventuresController < ApplicationController
   end
 
   def available_images
-    Dir.chdir(Rails.root.join('app','assets','images','items')) { Dir["*.*"] }
+    Dir.chdir(Rails.root.join('app','assets','images','items')) { Dir["*.*"].sort }
   end
 
   def played_adventures
