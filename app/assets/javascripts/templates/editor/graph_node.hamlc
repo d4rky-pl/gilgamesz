@@ -1,8 +1,7 @@
 .node{ 'data-id': @node.id }
-  .identifier 41
   .name
-    - if @node.name.length > 20
-      = @node.name.stripTags().first(17) + '...'
+    - if @node.name.length > 18
+      = @node.name.stripTags().first(15) + '...'
     - else
       = @node.name.stripTags()
   .type= @node.data.type

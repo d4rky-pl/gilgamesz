@@ -23,6 +23,9 @@ body.adventures-show {
 }
 
 body.adventures-edit, body.adventures-new {
+  background: image-url('editor-background.jpg');
+  background-size: cover;
+
   & > .container-fluid {
     height: 100%;
     & > #editor {
@@ -36,6 +39,10 @@ body.adventures-edit, body.adventures-new {
     }
   }
   #sidebar {
+    background: white;
+    padding: 1em;
+    border-radius: 3px;
+
     .tab-content {
       margin-top: 10px
     }
@@ -63,8 +70,10 @@ body.adventures-edit, body.adventures-new {
     height: 100%;
 
     .node {
+      width: 150px;
+      height: 50px;
       position: relative;
-      background-color: #313131;
+      background-color: #0e0805;
       border-radius: 5px;
       color: #8f8f8f;
       font-family: 'ringbearer';

@@ -1,4 +1,4 @@
-%ul.nav.nav-tabs.nav-justified
+%ul.nav.nav-pills.nav-justified
   %li.active
     %a{'href' => '#sidebar-node', 'role' => 'tab', 'data-toggle' => 'tab'} Node
   %li

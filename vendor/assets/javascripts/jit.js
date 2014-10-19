@@ -14357,8 +14357,8 @@ Layouts.ForceDirected = new Class({
     $.each(prop, function(p) {
       var pos = n.getPos(p);
       if(pos.equals(Complex.KER)) {
-        pos.x = (opt.width)/5 * (horizontalOffset);
-        pos.y = (opt.height)/5 * (verticalOffset) + 30;
+        pos.x = (opt.width)/6 * (horizontalOffset);
+        pos.y = (opt.height)/6 * (verticalOffset) + 20;
       }
       //initialize disp vector
       n.disp = {};
@@ -15004,8 +15004,18 @@ $jit.ForceDirected.$extend = true;
             to = adj.nodeTo.pos.getc(true),
             dim = adj.getData('dim'),
             direction = adj.data.$direction,
-            inv = (direction && direction.length>1 && direction[0] != adj.nodeFrom.id);
-        this.edgeHelper.arrow.render(from, to, dim, inv, canvas);
+            inv = (direction && direction.length>1 && direction[0] != adj.nodeFrom.id),
+            arrowTo = jQuery.extend({}, to);
+        if(to.y > from.y)
+          arrowTo.y -= 25;
+        else if (to.y < from.y)
+          arrowTo.y += 25;
+        else
+          if(to.x > from.x)
+            arrowTo.x -= 75;
+          else if (to.x < from.x)
+            arrowTo.x += 75;
+        this.edgeHelper.arrow.render(from, arrowTo, dim, inv, canvas);
       },
       'contains': function(adj, pos) {
         var from = adj.nodeFrom.pos.getc(true),

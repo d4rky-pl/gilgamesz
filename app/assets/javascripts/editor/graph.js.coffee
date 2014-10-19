@@ -22,20 +22,20 @@ class Graph
     @selectionModeCb = callback
 
   # methods for infovis graph initialization
+
   initGraph: ->
     @graphElement = new $jit.ForceDirected(
       injectInto: @$element.attr('id')
       Navigation:
         enable: true
         panning: "avoid nodes"
-        zooming: 10
       Node:
         overridable: false
       Edge:
-        type: 'line'
+        type: 'arrow'
         overridable: true
         color: "#8f8f8f"
-        lineWidth: 2
+        lineWidth: 4
       Label:
         type: "HTML"
         size: 10
@@ -68,7 +68,7 @@ class Graph
     @graphElement.animate
       modes: ["linear"]
       transition: $jit.Trans.Elastic.easeOut
-      duration: 2500
+      duration: 0
 
   # methods for building graph JSON
 
