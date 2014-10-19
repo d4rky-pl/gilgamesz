@@ -7,6 +7,20 @@ a.dz-remove, .dz-default {
 }
 
 body.adventures-show {
+  &.fantasy {
+    background-image: url(image_path("fantasy.jpg"));
+    background-size: cover;
+  }
+
+  &.scifi {
+    background-image: url(image_path("detective.jpg"));
+    background-size: cover;
+  }
+
+  &.detective {
+    background-image: url(image_path("detective.jpg"));
+    background-size: cover;
+  }
 
   .list-group {
     margin-bottom: 0;
@@ -524,19 +538,4 @@ body.adventures-show {
       }
     }
   }
-}
-
-body.fantasy {
-  background-image: url(image_path("fantasy.jpg"));
-  background-size: cover;
-}
-
-body.scifi {
-  background-image: url(image_path("detective.jpg"));
-  background-size: cover;
-}
-
-body.detective {
-  background-image: url(image_path("detective.jpg"));
-  background-size: cover;
 }

@@ -16,7 +16,7 @@ class Graph
     @$element.on 'click', '.node', ->
       if self.selectionModeEnabled
         self.selectionModeCb.call(this, $(this).data('id'))
-        @selectionModeEnabled = false
+        self.selectionModeEnabled = false
       else
         self.editor.selectNode($(this).data('id'))
       return false
