@@ -293,12 +293,12 @@ body.adventures-index {
             transition: opacity 0.5s;
 
             &.fantasy {
-              background-image: url(image_path("fantasy.jpg"));
+              background-image: url(image_path("rivendell.jpg"));
               background-size: cover;
             }
 
             &.scifi {
-              background-image: url(image_path("detective.jpg"));
+              background-image: url(image_path("scifi.jpg"));
               background-size: cover;
             }
 
