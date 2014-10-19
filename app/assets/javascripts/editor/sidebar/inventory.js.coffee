@@ -48,17 +48,17 @@ class Editor.Sidebar.Inventory extends Editor.Sidebar.Base
     @render()
 
   removeItem: (id) ->
-    item_index = @_itemIndex(id)
-    delete @editor.adventure.items[item_index] if item_index != -1
-    @editor.adventure.items = @editor.adventure.items.compact()
-    $('tr[data-item-id="' + id + '"]').remove()
+    self = this
+    bootbox.confirm "<p>Are you sure you want to remove this item?</p><p>This action cannot be undone. All references to this item will be removed from your game.</p>", (result) ->
+      if result
+        item_index = Editor.Utils.findIndex(self.editor.adventure.items, id)
+        self.removeItemReferences(id)
+        if item_index != -1
+          delete self.editor.adventure.items[item_index]
+          self.editor.adventure.items = self.editor.adventure.items.compact()
+          $('tr[data-item-id="' + id + '"]', self.container).remove()
 
-  _itemIndex: (id) ->
-    item_index = -1
-    @editor.adventure.items.each (item, i) ->
-      if item.id == id
-        item_index = i
-        false
-      else
-        true
-    item_index
+  removeItemReferences: (id) ->
+    @editor.adventure.nodes.each (node) ->
+      node.item_id = null if(node.item_id == id)
+

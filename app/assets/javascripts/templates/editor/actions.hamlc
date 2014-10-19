@@ -6,6 +6,8 @@
     .row
       .col-xs-12
         %textarea.form-control{type: 'text', name: "#{@namespace}[#{action.id}][description]" }= action.description
+        %input{type: 'hidden', name: "#{@namespace}[#{action.id}][node_id]", value: action.node_id}
+        %input{type: 'hidden', name: "#{@namespace}[#{action.id}][action_id]", value: action.id}
     .row
       .col-md-10
         %a.text-muted{'data-action' => 'set-node', 'data-action-node-id' => action.node_id}

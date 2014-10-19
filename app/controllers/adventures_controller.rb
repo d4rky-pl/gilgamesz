@@ -2,6 +2,7 @@ class AdventuresController < ApplicationController
   before_action :fluid_layout, only: [:edit, :new]
 
   def index
+    raise request.ip
     @adventures = Adventure.order('created_at DESC').paginate(page: params[:page], per_page: 9)
     @played_adventures = (session[:played_adventures]) ? Adventure.find(played_adventures)[0..8] : [];
     @best_adventures = Adventure.all.order('plays DESC').limit(9)
@@ -21,7 +22,7 @@ class AdventuresController < ApplicationController
 
   def create
     @adventure = Adventure.new(content: params[:json], token: params[:token])
-    if AdventureValidator.new(params[:json]).validate!
+    if AdventureValidator.new(@adventure, params[:json]).validate!
       @adventure.save!
       redirect_to @adventure
     end
@@ -29,7 +30,7 @@ class AdventuresController < ApplicationController
 
   def update
     @adventure = Adventure.where('token = ?', params[:id]).first
-    if AdventureValidator.new(params[:json]).validate!
+    if AdventureValidator.new(@adventure, params[:json]).validate!
       @adventure.update!(content: params[:json])
       redirect_to @adventure
     end

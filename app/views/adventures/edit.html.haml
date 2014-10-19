@@ -4,6 +4,6 @@
 :javascript
   (new Editor('#editor', gon.adventure)).render()
 
-= form_for(@adventure, html: { id: 'editor-adventure-form' } ) do
+= form_for(@adventure, url: @adventure.new_record? ? @adventure : adventure_path(@adventure.token), html: { id: 'editor-adventure-form' } ) do
   %input{type: 'hidden', name: 'token', value: params[:token]}
   %input#editor-adventure-json{type: 'hidden', name: 'json', value: @adventure.content}

@@ -39,6 +39,7 @@ class Editor
             className: 'btn-primary'
             callback: ->
               self.submit()
+              false
           },
           cancel: {
             label: "I'm not done yet"
@@ -48,8 +49,35 @@ class Editor
       )
 
   submit: ->
-    $('#editor-adventure-json').val(JSON.stringify(_editor.adventure))
-    $('#editor-adventure-form').submit()
+    if !@validItems()
+      bootbox.alert("You cannot have Use Item nor Add Item nodes without actual item!")
+    else if !@validActions()
+      bootbox.alert("You cannot have a Passage, Add Item or Use Item node without any actions!")
+    else
+      $('#editor-adventure-json').val(JSON.stringify(@adventure))
+      $('#editor-adventure-form').submit()
+
+  validItems: ->
+    valid = true
+    @adventure.nodes.each (node) ->
+      valid = false unless node.item_id? && @itemExists(node.item_id)
+
+  validActions: ->
+    valid = true
+    @adventure.nodes.each (node) ->
+      if node.type == 'add_item' || node.type == 'use_item'
+        Object.values node.events, (event) ->
+          valid = false unless event? && event.actions? && event.actions.length > 0
+
+      else if node.type == 'passage'
+        valid = false unless node.actions? && node.actions.length > 0
+    valid
+
+  itemExists: (item_id) ->
+    exists = false
+    @adventure.items.each (item) ->
+      exists = true if item.id == item_id
+    exists
 
   render: ->
     @sidebar.render()
