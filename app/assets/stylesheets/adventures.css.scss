@@ -8,12 +8,12 @@ a.dz-remove, .dz-default {
 
 body.adventures-show {
   &.fantasy {
-    background-image: url(image_path("fantasy.jpg"));
+    background-image: url(image_path("rivendell.jpg"));
     background-size: cover;
   }
 
   &.scifi {
-    background-image: url(image_path("detective.jpg"));
+    background-image: url(image_path("scifi.jpg"));
     background-size: cover;
   }
 
@@ -136,6 +136,11 @@ body.adventures-edit, body.adventures-new {
       font-family: 'ringbearer';
       cursor: pointer;
 
+      &.active {
+        background: #fff !important;
+        box-shadow: 1px 3px 8px 1px;
+      }
+
       .identifier {
         position: absolute;
         top: -0.2em;
@@ -166,6 +171,13 @@ body.adventures-edit, body.adventures-new {
     position: fixed;
     bottom: 20px;
     left: 20px;
+
+    .btn.btn-primary{
+      background: #ca3400;
+      border: 1px solid #A1401E;
+      outline: 0;
+      font-family: 'Lato', sans-serif;
+    }
   }
 }
 

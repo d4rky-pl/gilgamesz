@@ -1,20 +1,3 @@
-body.subpages-help {
-  background: url(image_path('adventure-index-body.png'));
-  background-size: cover;
-
-  h2 {
-    font-family: 'ringbearer';
-    font-size: 32px;
-    color: #0b0604;
-  }
-
-  p {
-    font-family: 'Lato', sans-serif;
-    font-size: 24px;
-    color: #0b0604;
-  }
-}
-
 body.subpages-about {
   background: url(image_path('adventure-index-body.png'));
   background-size: cover;
@@ -23,26 +6,36 @@ body.subpages-about {
     font-family: 'ringbearer';
     font-size: 32px;
     color: #0b0604;
+    margin-bottom: 44px 0;
   }
 
-  p, ul {
+  p {
     font-family: 'Lato', sans-serif;
-    font-size: 24px;
-    color: #0b0604;
-  }
-
-  .human {
+    font-size: 20px;
     text-align: center;
-
-    img {
-      width: 100%;
-      margin-bottom: 36px;
-    }
+    color: #0b0604;
+    margin: 32px 0;
 
     span {
-      font-family: 'Lato', sans-serif;
-      font-weight: normal;
-      font-size: 18px;
+      display: block;
+      font-size: 16px;
+    }
+
+    a.linkedin {
+      color: #287bbc;
+    }
+
+    a.facebook {
+      color: #3b5998;
+    }
+
+    a.github {
+      color: #333;
+    }
+
+    a.twitter {
+      color: #55acee;
     }
   }
+
 }
