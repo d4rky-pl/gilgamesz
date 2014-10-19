@@ -1,8 +1,8 @@
 - provide(:title, "About")
 
-.row
+.row.team
   .col-sm-8.col-sm-offset-2
-    %h2 Who we are?
+    %h2 The Complainers
 
     = image_tag "team.jpg", class: "img-thumbnail"
 
@@ -12,59 +12,44 @@
         %p.name
           Maciek Walusiak
           %span Ruby On Rails Developer
-          %br
-          = link_to "https://www.facebook.com/maciek.walusiak?fref=ts", class: "facebook" do
-            = fa_icon "facebook", text: "Facebook"
-          %br
-          = link_to "https://www.linkedin.com/pub/maciej-walusiak/77/827/ab5/en", class: "linkedin" do
-            = fa_icon "linkedin", text: "LinkedIn"
-          %br
-          = link_to "https://github.com/rabsztok", class: "github" do
-            = fa_icon "github", text: "Github"
-          %br
-            = link_to "https://twitter.com/MaciejWalusiak", class: "twitter" do
-              = fa_icon "twitter", text: "Twitter"
-
+        %a{href: "https://www.facebook.com/maciek.walusiak?fref=ts"}
+          %img{src: asset_path('facebook.png'), alt: 'Facebook'}
+        %a{href: "https://twitter.com/MaciejWalusiak"}
+          %img{src: asset_path('twitter.png'), alt: 'Twitter'}
+        %a{href: "https://github.com/rabsztok"}
+          %img{src: asset_path('github.png'), alt: 'GitHub'}
+        %a{href: "https://www.linkedin.com/pub/maciej-walusiak/77/827/ab5/en"}
+          %img{src: asset_path('linkedin.png'), alt: 'LinkedIn'}
 
       .col-sm-3
         %p.name
           Joanna Walusiak
           %span Graphic Designer
-          %br
-          = link_to "https://www.facebook.com/joanna.walusiak.750", class: "facebook" do
-            = fa_icon "facebook", text: "Facebook"
-          %br
-          = link_to "https://www.linkedin.com/pub/joanna-walusiak/6a/509/536/en", class: "linkedin" do
-            = fa_icon "linkedin", text: "LinkedIn"
-
+        %a{href: "https://www.facebook.com/joanna.walusiak.750"}
+          %img{src: asset_path('facebook.png'), alt: 'Facebook'}
+        %a{href: "https://www.linkedin.com/pub/joanna-walusiak/6a/509/536/en"}
+          %img{src: asset_path('linkedin.png'), alt: 'LinkedIn'}
 
       .col-sm-3
         %p.name
           Michał Matyas
           %span Ruby On Rails Developer
-          %br
-          = link_to "https://www.facebook.com/michal.matyas", class: "facebook" do
-            = fa_icon "facebook", text: "Facebook"
-          %br
-          = link_to "https://www.linkedin.com/pub/micha%C5%82-matyas/76/703/1ba", class: "linkedin" do
-            = fa_icon "linkedin", text: "LinkedIn"
-          %br
-          = link_to "https://github.com/d4rky-pl", class: "github" do
-            = fa_icon "github", text: "Github"
-          %br
-          = link_to "https://twitter.com/nerdblogpl", class: "twitter" do
-            = fa_icon "twitter", text: "Twitter"
+        %a{href: "https://www.facebook.com/michal.matyas"}
+          %img{src: asset_path('facebook.png'), alt: 'Facebook'}
+        %a{href: "https://twitter.com/nerdblogpl"}
+          %img{src: asset_path('twitter.png'), alt: 'Twitter'}
+        %a{href: "https://github.com/d4rky-pl"}
+          %img{src: asset_path('github.png'), alt: 'GitHub'}
+        %a{href: "https://www.linkedin.com/pub/micha%C5%82-matyas/76/703/1ba"}
+          %img{src: asset_path('linkedin.png'), alt: 'LinkedIn'}
 
       .col-sm-3
         %p.name
           Marcin Klocek
           %span Frontend Developer
-          %br
-          = link_to "https://www.facebook.com/marcin.klocek", class: "facebook" do
-            = fa_icon "facebook", text: "Facebook"
-          %br
-          = link_to "https://www.linkedin.com/pub/marcin-klocek/79/3b3/296", class: "linkedin" do
-            = fa_icon "linkedin", text: "LinkedIn"
-          %br
-          = link_to "https://github.com/mklocek" do
-            = fa_icon "github", text: "Github", class: "github"
+        %a{href: "https://www.facebook.com/marcin.klocek"}
+          %img{src: asset_path('facebook.png'), alt: 'Facebook'}
+        %a{href: "https://github.com/mklocek"}
+          %img{src: asset_path('github.png'), alt: 'GitHub'}
+        %a{href: "https://www.linkedin.com/pub/marcin-klocek/79/3b3/296"}
+          %img{src: asset_path('linkedin.png'), alt: 'LinkedIn'}

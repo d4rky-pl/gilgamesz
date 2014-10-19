@@ -431,6 +431,23 @@ body.adventures-show {
   background-image: url(image_path("game-background.png"));
   background-size: cover;
 
+  .popover {
+    background: #333;
+    .popover-title {
+      background: #222;
+      font-family: 'ringbearer';
+      color: #ca3400;
+      border-bottom: 1px solid #000
+    }
+    .popover-content {
+      color: #eee
+    }
+
+    &.top > .arrow:after {
+      border-top-color: #333;
+    }
+  }
+
   .game-container {
     position: relative;
     padding: 0;
@@ -512,7 +529,11 @@ body.adventures-show {
         background-image: url(image_path('adventure-index-body.png'));
         background-size: cover;
         margin: 15px 15px 0;
-        padding: 22px 20px 48px;
+        padding: 22px 20px 22px;
+
+        >.list-group {
+          margin-top: 40px;
+        }
 
         p {
           font-family: 'Lato', sans-serif;
@@ -542,6 +563,41 @@ body.adventures-show {
           font-family: 'Lato', sans-serif;
           font-size: 14px;
           color: #0b0604;
+        }
+      }
+    }
+
+    .game-item {
+      margin: 15px 0;
+      background: rgba(0,0,0,0.5);
+      display: table;
+      width: 100%;
+      color: white;
+
+      .game-item-icon {
+        height: 100%;
+        display: table-cell;
+        vertical-align: middle;
+        width: 60px;
+        text-align: center;
+      }
+
+      .game-item-body {
+        display: table-cell;
+        padding: 10px;
+        h4 {
+          font-weight: bold;
+          font-family: 'ringbearer';
+          color: #ca3400;
+          text-transform: lowercase;
+          font-size: 18px;
+          text-shadow: 0 1px 0 rgba(0,0,0,0.5);
+        }
+        p {
+          font-size: 14px;
+          margin: 0;
+          color: #eee;
+          text-shadow: 0 1px 0 rgba(0,0,0,0.5);
         }
       }
     }

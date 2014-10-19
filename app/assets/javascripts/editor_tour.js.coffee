@@ -53,10 +53,10 @@ $ ->
     shepherd.addStep 'graph', {
       title: 'Plot tree'
       text: [
-        'Here are the most important view of the editor.'
+        'Here is the most important view of the editor.'
         'It shows your created nodes.'
-        'When you click in the black box,'
-        'you can switch to edit the selected node.'
+        'When you click on the black box,'
+        'you can switch to editing the selected node.'
       ]
       attachTo: '#graph right'
       buttons: [
@@ -76,7 +76,7 @@ $ ->
       text: [
         'Here you can change the node name,'
         'describe the story associated with this step in the game'
-        'and add next nodes (childs).'
+        'and add additional nodes.'
         'Switch now to the "inventory" tab and go ahead.'
       ]
       attachTo: '.tab-content left'
@@ -115,10 +115,10 @@ $ ->
       title: 'The "settings" tab'
       text: [
         'Here you can edit the details of your game.'
-        'The name and description, are those parts'
+        'The name and description, are the parts'
         'that encourage the player to play your game.'
         'You can choose one of the specific types of games,'
-        'so that your gameplay will be fought in a specific world!'
+        'so that your gameplay will happen in a specific kind of world!'
       ]
       attachTo: '.tab-content left'
       buttons: [
@@ -135,8 +135,8 @@ $ ->
 
     shepherd.addStep 'finish', {
       text: [
-        'We hope that you will have a lot of fun with Gilgamesz!'
-        'Have fun!'
+        'We hope that you will have a lot of fun with Gilgamesz.'
+        'Good luck and show us how you roll!'
       ]
       attachTo: '.navbar.header bottom'
       buttons: [

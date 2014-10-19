@@ -11,19 +11,19 @@
       != @message
       - if @event == 'add_item'
         %h3 You've gained a new item!
-        .media
-          .pull-left
+        .game-item
+          .game-item-icon
             %img{src: @item.image}
-          .media-body
+          .game-item-body
             %h4.media-heading= @item.name
             != @item.description
 
       - if @event == 'use_item'
         %h3 You've used an item.
-        .media
-          .pull-left
+        .game-item
+          .game-item-icon
             %img{src: @item.image}
-          .media-body
+          .game-item-body
             %h4.media-heading= @item.name
             != @item.description
 

@@ -9,7 +9,7 @@ class Game.Renderer
     template = JST['game/template'](@getContextForNode(state))
     @container.empty()
     @container.html(template)
-    $('[data-toggle="popover"]', @container).popover({ html: true })
+    $('[data-toggle="popover"]', @container).popover({ html: true, container: 'body' })
 
     $('[data-action="move"]', @container).click ->
       self.game.move($(this).data('node-id'))
