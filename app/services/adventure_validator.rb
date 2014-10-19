@@ -19,6 +19,7 @@ class AdventureValidator
   def validate!
     #validate_unique_name!
     validate_passages!
+    validate_items!
     true
   end
 
