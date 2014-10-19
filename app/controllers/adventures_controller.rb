@@ -15,7 +15,7 @@ class AdventuresController < ApplicationController
   end
 
   def edit
-    @adventure = Adventure.where('token = ?', params[:id]).first
+    @adventure = Adventure.find_by!(token: params[:id])
     set_gon_attributes
   end
 
@@ -28,7 +28,7 @@ class AdventuresController < ApplicationController
   end
 
   def update
-    @adventure = Adventure.where('token = ?', params[:id]).first
+    @adventure = Adventure.find_by!(token: params[:id])
     if AdventureValidator.new(@adventure, params[:json]).validate!
       @adventure.update!(content: params[:json])
       redirect_to @adventure

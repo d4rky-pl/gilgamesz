@@ -83,7 +83,7 @@ class Graph
       name: node.name
       data:
         type: node.type
-      adjacencies: @actions(node)
+      adjacencies: @actions(node).unique()
     }
 
   actions: (node) ->
