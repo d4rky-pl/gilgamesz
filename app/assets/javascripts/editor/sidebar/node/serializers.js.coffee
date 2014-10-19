@@ -10,7 +10,7 @@ class Editor.Sidebar.Node.Serializers
     node.name = form_data.name
     node.item_id = form_data.node_id || null
 
-    ['add_item', 'already_have_item'].each (event_name) ->
+    ['add_item', 'already_has_item'].each (event_name) ->
       node.events[event_name].description          = form_data[event_name].description
 
     node
