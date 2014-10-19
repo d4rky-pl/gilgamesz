@@ -14359,7 +14359,6 @@ Layouts.ForceDirected = new Class({
       if(pos.equals(Complex.KER)) {
         pos.x = (opt.width)/5 * (horizontalOffset);
         pos.y = (opt.height)/5 * (verticalOffset) + 30;
-        console.log(pos.x, pos.y, horizontalOffset, verticalOffset, Complex.KER);
       }
       //initialize disp vector
       n.disp = {};

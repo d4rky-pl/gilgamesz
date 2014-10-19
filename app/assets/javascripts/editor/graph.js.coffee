@@ -1,16 +1,25 @@
 class Graph
   constructor: (@editor, @selector) ->
     @$element = $(@selector)
-    @json = gon.adventure
-    @startId = @json.nodes.first().id
     @initGraph()
     @bindEvents()
+    @selectionModeEnabled = false
+    @selectionModeCb = (node_id) ->
+    window._graph = this
 
   bindEvents: ->
     self = this
     @$element.on 'click', '.node', ->
-      self.editor.selectNode($(this).data('id'))
+      if self.selectionModeEnabled?
+        self.selectionModeCb.call(this, $(this).data('id'))
+        @selectionModeEnabled = false
+      else
+        self.editor.selectNode($(this).data('id'))
       return false
+
+  selectionMode: (callback) ->
+    @selectionModeEnabled = true
+    @selectionModeCb = callback
 
   # methods for infovis graph initialization
   initGraph: ->
@@ -50,6 +59,11 @@ class Graph
     @graphElement.computeIncremental
       onComplete: $.proxy(@renderCallback, this)
 
+  rerender: ->
+    @$element.html('');
+    @initGraph();
+    @render();
+
   renderCallback: ->
     @graphElement.animate
       modes: ["linear"]
@@ -59,7 +73,7 @@ class Graph
   # methods for building graph JSON
 
   graphJSON: ->
-    @json.nodes.map $.proxy(@translateNode, this)
+    gon.adventure.nodes.map $.proxy(@translateNode, this)
 
   translateNode: (node) ->
     {

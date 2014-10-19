@@ -37,7 +37,7 @@ class AdventuresController < ApplicationController
   private
 
   def set_gon_attributes
-    gon.push adventure: @adventure.content, available_images: available_images
+    gon.push adventure: @adventure.content, available_images: available_images, adventure2: Adventure.find(2).content
   end
 
   def adventure_params

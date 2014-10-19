@@ -1,0 +1,131 @@
+{
+  "nodes": [
+    {
+      "id": "passage-a63b6d00-8d5a-4d75-b0e1-dffeb15a74e5",
+      "name": "Spooky corridor",
+      "type": "passage",
+      "description": "<p>You are standing in front of the door.</p>",
+      "actions": [
+        {
+          "node_id": "passage-b38c9b07-0146-45ab-9ef2-0291f19da433",
+          "description": "<p>Try to open the door</p>"
+        },
+        {
+          "node_id": "passage-66ec970f-5f97-41c8-90cb-ad9d9f1d560a",
+          "description": "<p>Look for a key</p>"
+        },
+        {
+          "node_id": "gameover-e95a7185-f917-4d4e-bc93-9e29253ab974",
+          "description": "<p>Lie down on the floor and die.</p>"
+        },
+        {
+          "node_id": "passage-e9543185-f917-4d4e-bc93-9e21234ab974",
+          "description": "<p>Go somewhere else.</p>"
+        }
+      ]
+    },
+    {
+      "id": "passage-e9543185-f917-4d4e-bc93-9e21234ab974",
+      "name": "Spooky corridor",
+      "type": "passage",
+      "description": "<p>You are somewhere else.</p>",
+      "actions": [
+        {
+          "node_id": "gameover-e95a7185-f917-4d4e-bc93-9e29253ab974",
+          "description": "<p>Lie down on the floor and die.</p>"
+        }
+      ]
+    },
+    {
+      "id": "passage-b38c9b07-0146-45ab-9ef2-0291f19da433",
+      "type": "use_item",
+      "item_id": "item-ea522208-0529-43d7-8d46-05f17ae469d9",
+      "name": "Spooky corridor - door",
+      "remove_after": false,
+
+      "events": {
+        "use_item": {
+          "description": "<p>You open a door using the key</p>",
+          "actions": [
+            {
+              "node_id": "finish-b461338d-9543-4dc3-876a-6da82b374d24",
+              "description": "<p>Step forward</p>"
+            }
+          ]
+        },
+        "already_used_item": {
+          "description": "<p>Door is open</p>",
+          "actions": [
+            {
+              "node_id": "finish-b461338d-9543-4dc3-876a-6da82b374d24",
+              "description": "<p>Step forward</p>"
+            }
+          ]
+        },
+        "no_item": {
+          "description": "<p>You need a key to open this door.</p>",
+          "actions": [
+            {
+              "node_id": "passage-a63b6d00-8d5a-4d75-b0e1-dffeb15a74e5",
+              "description": "<p>Go back</p>"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "passage-66ec970f-5f97-41c8-90cb-ad9d9f1d560a",
+      "type": "add_item",
+      "item_id": "item-ea522208-0529-43d7-8d46-05f17ae469d9",
+      "name": "Spooky corridor - floor",
+
+      "events": {
+        "add_item": {
+          "description": "<p>You have found a key</p>",
+          "actions": [
+            {
+              "node_id": "passage-a63b6d00-8d5a-4d75-b0e1-dffeb15a74e5",
+              "description": "<p>Go back</p>"
+            }
+          ]
+        },
+        "already_has_item": {
+          "description": "<p>You have already took the key from here</p>",
+          "actions": [
+            {
+              "node_id": "passage-a63b6d00-8d5a-4d75-b0e1-dffeb15a74e5",
+              "description": "<p>Go back</p>"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "gameover-e95a7185-f917-4d4e-bc93-9e29253ab974",
+      "type": "gameover",
+      "name": "Spooky corridor - floor",
+      "description": "<p>You are dead.</p>"
+    },
+    {
+      "id": "finish-b461338d-9543-4dc3-876a-6da82b374d24",
+      "type": "finish",
+      "name": "Bright room full of light",
+      "description": "<p>You have finished the demo!</p>"
+    }
+  ],
+
+  "items": [
+    {
+      "id": "item-ea522208-0529-43d7-8d46-05f17ae469d9",
+      "image": "Key01.png",
+      "name": "Door key",
+      "description": "<p>Example key</p>"
+    }
+  ],
+
+  "settings": {
+    "name": "Demo adventure",
+    "author": "Michał Matyas",
+    "game_type": "fantasy"
+  }
+}
