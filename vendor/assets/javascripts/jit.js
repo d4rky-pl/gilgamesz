@@ -14373,15 +14373,16 @@ Layouts.ForceDirected = new Class({
     computedNodeIds.push(n.id);
     self = this;
     var i = 0;
-    Object.keys(n.adjacencies).each(function(id) {
+    var node_ids = Object.keys(n.adjacencies);
+    node_ids.each(function(id) {
       var _id = id;
-      i = i + 1;
       var node = Object.values(self.graph.nodes).find(function (node) {
         return node.id == _id;
       });
       if (node != undefined) {
-        nodesToCompute.push([computedNodeIds, prop, opt, node, horizontalOffset - 2 + (i), verticalOffset + 1]);
+        nodesToCompute.push([computedNodeIds, prop, opt, node, horizontalOffset - (node_ids.length - 1)/2 + (i), verticalOffset + 1]);
       }
+      i = i + 1;
     });
   },
   
