@@ -11,8 +11,10 @@
 #= require bootbox
 #= require uuid
 #= require jquery.serializejson
+#= require dropzone
 
 #= require_tree ./templates
 #= require index
 #= require game
 #= require editor
+#= require images

@@ -9,3 +9,10 @@
       in an attempt to manage census counting for tax/excise purposes.
       Imperial taxes are based on head counts of citizens;
       Census and Excise is responsible for both head!
+
+  -#.col-sm-12
+  -#  Upload items:
+  -#  = form_for(Image.new, html: { multipart: true, class: "dropzone"}) do |f|
+  -#    .fallback
+  -#      = f.file_field :file
+  -#      = f.submit "Upload"
