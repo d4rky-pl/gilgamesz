@@ -30,7 +30,7 @@ class Graph
       Label:
         type: "HTML"
         size: 10
-      iterations: 200
+      iterations: 1
       levelDistance: 150
 
       onCreateLabel: (domElement, node) ->

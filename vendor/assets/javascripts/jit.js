@@ -14342,23 +14342,44 @@ Layouts.ForceDirected = new Class({
   compute: function(property, incremental) {
     var prop = $.splat(property || ['current', 'start', 'end']);
     var opt = this.getOptions();
+    var computedNodeIds = new Array();
     NodeDim.compute(this.graph, prop, this.config);
     this.graph.computeLevels(this.root, 0, "ignore");
-    this.graph.eachNode(function(n) {
+    var firstNode = Object.values(this.graph.nodes).first();
+    this.computeNode(computedNodeIds, prop, opt, firstNode, 0, 0);
+    this.computePositions(prop, opt, incremental);
+  },
+
+  computeNode: function(computedNodeIds, prop, opt, n, horizontalOffset, verticalOffset) {
+    if(computedNodeIds.find(n.id)){
+      return false
+    }
+    $.each(prop, function(p) {
+      var pos = n.getPos(p);
+      if(pos.equals(Complex.KER)) {
+        pos.x = (opt.width)/5 * (horizontalOffset);
+        pos.y = (opt.height)/5 * (verticalOffset);
+        console.log(pos.x, pos.y, horizontalOffset, verticalOffset, Complex.KER);
+      }
+      //initialize disp vector
+      n.disp = {};
       $.each(prop, function(p) {
-        var pos = n.getPos(p);
-        if(pos.equals(Complex.KER)) {
-          pos.x = (opt.width)/5 * (Math.random() - 0.5);
-          pos.y = (opt.height)/5 * (Math.random() - 0.5);
-        }
-        //initialize disp vector
-        n.disp = {};
-        $.each(prop, function(p) {
-          n.disp[p] = $C(0, 0);
-        });
+        n.disp[p] = $C(0, 0);
       });
     });
-    this.computePositions(prop, opt, incremental);
+    computedNodeIds.push(n.id);
+    self = this;
+    var i = 0;
+    Object.keys(n.adjacencies).each(function(id) {
+      var _id = id;
+      i = i + 1;
+      var node = Object.values(self.graph.nodes).find(function (node) {
+        return node.id == _id;
+      });
+      if (node != undefined) {
+        self.computeNode(computedNodeIds, prop, opt, node, horizontalOffset - 2 + (i), verticalOffset + 1);
+      }
+    });
   },
   
   computePositions: function(property, opt, incremental) {
