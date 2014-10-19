@@ -2,6 +2,14 @@ body.subpages-about {
   background: url(image_path('adventure-index-body.png'));
   background-size: cover;
 
+  .team {
+    margin-bottom: 32px
+  }
+
+  .row {
+    text-align: center
+  }
+
   h2 {
     font-family: 'ringbearer';
     font-size: 32px;
@@ -14,27 +22,20 @@ body.subpages-about {
     font-size: 20px;
     text-align: center;
     color: #0b0604;
-    margin: 32px 0;
+    margin: 32px 0 0 0;
+    height: 80px;
 
     span {
       display: block;
       font-size: 16px;
     }
+  }
 
-    a.linkedin {
-      color: #287bbc;
-    }
-
-    a.facebook {
-      color: #3b5998;
-    }
-
-    a.github {
-      color: #333;
-    }
-
-    a.twitter {
-      color: #55acee;
+  a {
+    opacity: 0.5;
+    @include transition(0.5s);
+    &:hover {
+      opacity: 0.85;
     }
   }
 
