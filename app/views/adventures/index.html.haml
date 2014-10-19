@@ -11,9 +11,21 @@
     = link_to "create new game >", new_adventure_path, class: "btn btn-orange"
 
     .posters
-      = image_tag "poster.png", class: "poster"
-
-
+      #carousel-example-generic.carousel.slide{"data-ride" => "carousel"}
+        %ol.carousel-indicators
+          %li.active{"data-slide-to" => "0", "data-target" => "#carousel-example-generic"}
+          %li{"data-slide-to" => "1", "data-target" => "#carousel-example-generic"}
+          %li{"data-slide-to" => "2", "data-target" => "#carousel-example-generic"}
+        .carousel-inner
+          .item.active
+            = link_to (image_tag "poster.png", class: "poster"), "#"
+            .carousel-caption
+          .item
+            = link_to (image_tag "poster.png", class: "poster"), "#"
+            .carousel-caption
+          .item
+            = link_to (image_tag "poster.png", class: "poster"), "#"
+            .carousel-caption
 
   .col-sm-8.games-container
 

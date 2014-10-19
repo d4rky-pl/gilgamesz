@@ -6,4 +6,5 @@ Rails.application.routes.draw do
   end
 
   match '/help', to: 'subpages#help', via: :get, as: :help
+  match '/about', to: 'subpages#about', via: :get, as: :about
 end

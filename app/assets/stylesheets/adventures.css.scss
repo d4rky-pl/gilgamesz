@@ -294,3 +294,79 @@ body.adventures-index {
     padding: 0 20px !important;
   }
 }
+
+body.adventures-show {
+  background: url(image_path("game-background.png"));
+  background-position: fixed;
+  background-size: 100% 100%;
+
+  .game-container {
+    position: relative;
+    padding: 0;
+
+    .game-header {
+      position: relative;
+      text-align: center;
+
+      span {
+        font-family: 'ringbearer';
+        font-size: 20px;
+        color: #e0d4ba;
+        background: #0e0805;
+        padding: 4px 8px;
+        position: relative;
+        border-radius: 4px;
+
+        &:before {
+          content: '';
+          position: absolute;
+          left: -8px;
+          top: 12px;
+          width: 16px;
+          height: 16px;
+          border-radius: 12px 0 0 12px;
+          background: #0e0805;
+        }
+
+        &:after {
+          content: '';
+          position: absolute;
+          right: -8px;
+          top: 12px;
+          width: 16px;
+          height: 16px;
+          border-radius: 0 12px 12px 0;
+          background: #0e0805;
+        }
+      }
+    }
+
+    .panel-default {
+      border-color: #dddddd;
+      background: #0e0805;
+      margin-top: -16px;
+      border-radius: 0;
+      border: 0;
+      padding: 0;
+
+      .panel-photo {
+        background: url(image_path("poster.png"));
+        width: 100%;
+        min-height: 310px;
+        background-size: 100% 100%;
+        position: relative;
+
+        &:after {
+          position: absolute;
+          content: '';
+          bottom: 0;
+          width: 56px;
+          height: 56px;
+          left: calc(50% - 28px);
+          border-radius: 40px;
+          background: #0e0805;
+        }
+      }
+    }
+  }
+}

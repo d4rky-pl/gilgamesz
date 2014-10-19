@@ -1,8 +1,10 @@
-.container
-  .page-header
-    %h1= @game_name
+.col-sm-8.col-sm-offset-2.game-container
+  .game-header
+    %span
+      = @game_name
 
   .panel.panel-default
+    .panel-photo
     .panel-body
       != @message
 

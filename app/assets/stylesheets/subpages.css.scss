@@ -1,0 +1,46 @@
+body.subpages-help {
+  background: url(image_path('adventure-index-body.png')) repeat;
+
+  h2 {
+    font-family: 'ringbearer';
+    font-size: 32px;
+    color: #0b0604;
+  }
+
+  p {
+    font-family: 'Lato', sans-serif;
+    font-size: 24px;
+    color: #0b0604;
+  }
+}
+
+body.subpages-about {
+  background: url(image_path('adventure-index-body.png')) repeat;
+
+  h2 {
+    font-family: 'ringbearer';
+    font-size: 32px;
+    color: #0b0604;
+  }
+
+  p, ul {
+    font-family: 'Lato', sans-serif;
+    font-size: 24px;
+    color: #0b0604;
+  }
+
+  .human {
+    text-align: center;
+
+    img {
+      width: 100%;
+      margin-bottom: 36px;
+    }
+
+    span {
+      font-family: 'Lato', sans-serif;
+      font-weight: normal;
+      font-size: 18px;
+    }
+  }
+}

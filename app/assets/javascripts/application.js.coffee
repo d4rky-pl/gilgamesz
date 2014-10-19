@@ -3,6 +3,7 @@
 #= require bootstrap
 #= require bootstrap/tooltip
 #= require bootstrap/popover
+#= require bootstrap-select
 #= require sugar
 #= require hamlcoffee
 #= require assets_js
@@ -10,7 +11,6 @@
 #= require bootbox
 #= require uuid
 #= require jquery.serializejson
-#= require bootstrap-select
 #= require_tree ./templates
 #= require index
 #= require game
