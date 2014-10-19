@@ -2,9 +2,69 @@
 
 .row
   .col-sm-8.col-sm-offset-2
-    %h2 About us
-
-    %p
-      We are young web developers from Cracow. Get to know us!
+    %h2 Who we are?
 
     = image_tag "team.jpg", class: "img-thumbnail"
+
+    .row
+
+      .col-sm-3
+        %p.name
+          Maciek Walusiak
+          %span Ruby On Rails Developer
+          %br
+          = link_to "https://www.facebook.com/maciek.walusiak?fref=ts", class: "facebook" do
+            = fa_icon "facebook", text: "Facebook"
+          %br
+          = link_to "https://www.linkedin.com/pub/maciej-walusiak/77/827/ab5/en", class: "linkedin" do
+            = fa_icon "linkedin", text: "LinkedIn"
+          %br
+          = link_to "https://github.com/rabsztok", class: "github" do
+            = fa_icon "github", text: "Github"
+          %br
+            = link_to "https://twitter.com/MaciejWalusiak", class: "twitter" do
+              = fa_icon "twitter", text: "Twitter"
+
+
+      .col-sm-3
+        %p.name
+          Joanna Walusiak
+          %span Graphic Designer
+          %br
+          = link_to "https://www.facebook.com/joanna.walusiak.750", class: "facebook" do
+            = fa_icon "facebook", text: "Facebook"
+          %br
+          = link_to "https://www.linkedin.com/pub/joanna-walusiak/6a/509/536/en", class: "linkedin" do
+            = fa_icon "linkedin", text: "LinkedIn"
+
+
+      .col-sm-3
+        %p.name
+          Michał Matyas
+          %span Ruby On Rails Developer
+          %br
+          = link_to "https://www.facebook.com/michal.matyas", class: "facebook" do
+            = fa_icon "facebook", text: "Facebook"
+          %br
+          = link_to "https://www.linkedin.com/pub/micha%C5%82-matyas/76/703/1ba", class: "linkedin" do
+            = fa_icon "linkedin", text: "LinkedIn"
+          %br
+          = link_to "https://github.com/d4rky-pl", class: "github" do
+            = fa_icon "github", text: "Github"
+          %br
+          = link_to "https://github.com/d4rky-pl", class: "twitter" do
+            = fa_icon "twitter", text: "Twitter"
+
+      .col-sm-3
+        %p.name
+          Marcin Klocek
+          %span Frontend Developer
+          %br
+          = link_to "https://www.facebook.com/marcin.klocek", class: "facebook" do
+            = fa_icon "facebook", text: "Facebook"
+          %br
+          = link_to "https://www.linkedin.com/pub/marcin-klocek/79/3b3/296", class: "linkedin" do
+            = fa_icon "linkedin", text: "LinkedIn"
+          %br
+          = link_to "https://github.com/mklocek" do
+            = fa_icon "github", text: "Github", class: "github"

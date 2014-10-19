@@ -3,7 +3,8 @@
   %head
     %title
       = (yield(:title).blank?) ? "Gilgamesz" : "#{ yield(:title) } | Gilgamesz"
-    %link{:href => "http://fonts.googleapis.com/css?family=Lato:400,700", :rel => "stylesheet", :type => "text/css"}/
+    %link{href: "http://fonts.googleapis.com/css?family=Lato:400,700", rel: "stylesheet", type: "text/css"}
+    %link{href: image_path("favicon.png"), rel: "shortcut icon"}
     = stylesheet_link_tag    'application', media: 'all'
     = javascript_include_tag 'application'
     = yield :assets
@@ -12,19 +13,25 @@
 
   %body{class: "#{params[:controller]}-#{params[:action]} #{ @adventure.content["settings"]["game_type"] if @adventure && @adventure.content["settings"] }"}
 
+    :javascript
+      var rumbleBannerBackgroundColor, rumbleBannerTextColor, rumbleBannerLinkColor, rumbleBannerPlacement;
+      rumbleBannerBackgroundColor = "#000";
+      rumbleBannerTextColor = "#b0b0b0";
+      rumbleBannerLinkColor = "#fff";
+      rumbleBannerPlacement = "top";
+
+    %script{:src => "https://d4nnn7wspfa3h.cloudfront.net/banner-2014.js", :type => "text/javascript"}
+
+    :css
+      div#rumble2014 {
+        position: relative !important;
+        font-family: 'Lato', sans-serif;
+      }
+
     = render 'layouts/header'
 
     %div{ class: @fluid_layout ? 'container-fluid' : 'container' }
       = yield
-
-    :javascript
-      var rumbleBannerBackgroundColor, rumbleBannerTextColor, rumbleBannerLinkColor, rumbleBannerPlacement;
-      rumbleBannerBackgroundColor = "#161616";
-      rumbleBannerTextColor = "#b0b0b0";
-      rumbleBannerLinkColor = "#ffffff";
-      rumbleBannerPlacement = "bottom"; // Optionally replace with "bottom".
-
-    %script{:src => "https://d4nnn7wspfa3h.cloudfront.net/banner-2014.js", :type => "text/javascript"}
 
     %script{:charset => "utf-8", :type => "text/javascript"}
       var _swell_site_ids = _swell_site_ids || [];
