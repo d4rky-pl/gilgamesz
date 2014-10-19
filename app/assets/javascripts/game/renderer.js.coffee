@@ -6,7 +6,7 @@ class Game.Renderer
   render: (state) ->
     self = this
 
-    template = JST['show/template'](@getContextForNode(state))
+    template = JST['game/template'](@getContextForNode(state))
     @container.empty()
     @container.html(template)
     $('[data-toggle="popover"]', @container).popover({ html: true })

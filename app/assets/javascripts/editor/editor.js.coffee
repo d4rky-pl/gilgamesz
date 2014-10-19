@@ -3,7 +3,7 @@ class Editor
 
   constructor: (container, adventure) ->
     @container = $(container)
-    @container.html(JST['edit/template']())
+    @container.html(JST['editor/template']())
 
     @adventure = adventure
     @sidebar = new Editor.Sidebar(this, '#sidebar')

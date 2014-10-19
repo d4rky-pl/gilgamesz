@@ -11,8 +11,8 @@
 #= require bootbox
 #= require uuid
 #= require jquery.serializejson
+
 #= require_tree ./templates
 #= require index
 #= require game
 #= require editor
-#= require graph

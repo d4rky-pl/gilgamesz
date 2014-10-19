@@ -34,7 +34,7 @@ class Graph
       levelDistance: 150
 
       onCreateLabel: (domElement, node) ->
-        domElement.innerHTML = JST['edit/graph_node'](node: node)
+        domElement.innerHTML = JST['editor/graph_node'](node: node)
 
       onPlaceLabel: (domElement, node) ->
         style = domElement.style

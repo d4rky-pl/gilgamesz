@@ -1,5 +1,5 @@
-#= require game
-#= require renderer
-#= require inventory
-#= require reactions
-#= require helpers
+#= require ./game
+#= require ./renderer
+#= require ./inventory
+#= require ./reactions
+#= require ./helpers

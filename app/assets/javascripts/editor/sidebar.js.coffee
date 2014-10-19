@@ -3,7 +3,7 @@ class Editor.Sidebar
     @editor = editor
     @container = $(container)
 
-    @container.html(JST['edit/sidebar']())
+    @container.html(JST['editor/sidebar']())
 
     @tabs = {
       node:      new Editor.Sidebar.Node(@editor, '#sidebar-node'),

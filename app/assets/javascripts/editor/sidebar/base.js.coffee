@@ -7,7 +7,7 @@ class Editor.Sidebar.Base
 
   render: ->
     @beforeRender()
-    @container.html(JST['edit/' + @template](@context()))
+    @container.html(JST['editor/' + @template](@context()))
     @afterRender()
 
   context: ->
