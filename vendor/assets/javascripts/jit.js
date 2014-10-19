@@ -14460,8 +14460,8 @@ Layouts.ForceDirected = new Class({
         var p = u.getPos(p);
         p.$add($C(disp.x * min(Math.abs(disp.x), t) / norm, 
             disp.y * min(Math.abs(disp.y), t) / norm));
-        p.x = min(w2, max(-w2, p.x));
-        p.y = min(h2, max(-h2, p.y));
+//        p.x = min(w2, max(-w2, p.x));
+//        p.y = min(h2, max(-h2, p.y));
       });
     });
   }
