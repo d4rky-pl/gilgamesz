@@ -2,6 +2,7 @@
   "nodes": [
     {
       "id": "passage-a63b6d00-8d5a-4d75-b0e1-dffeb15a74e5",
+      "name": "Spooky corridor",
       "type": "passage",
       "description": "<p>You are standing in front of the door.</p>",
       "actions": [
@@ -23,7 +24,7 @@
       "id": "passage-b38c9b07-0146-45ab-9ef2-0291f19da433",
       "type": "use_item",
       "item_id": "item-ea522208-0529-43d7-8d46-05f17ae469d9",
-
+      "name": "Spooky corridor - door",
       "remove_after": false,
 
       "events": {
@@ -60,6 +61,7 @@
       "id": "passage-66ec970f-5f97-41c8-90cb-ad9d9f1d560a",
       "type": "add_item",
       "item_id": "item-ea522208-0529-43d7-8d46-05f17ae469d9",
+      "name": "Spooky corridor - floor",
 
       "events": {
         "add_item": {
@@ -85,11 +87,13 @@
     {
       "id": "gameover-e95a7185-f917-4d4e-bc93-9e29253ab974",
       "type": "gameover",
+      "name": "Spooky corridor - floor",
       "description": "<p>You are dead.</p>"
     },
     {
       "id": "finish-b461338d-9543-4dc3-876a-6da82b374d24",
       "type": "finish",
+      "name": "Bright room full of light",
       "description": "<p>You have finished the demo!</p>"
     }
   ],

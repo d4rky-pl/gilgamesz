@@ -1,2 +1,38 @@
-.page-header
-  %h3 Use Item (#{@id})
+%form.node-edit
+  .form-group
+    %label.control-label Name
+    %input.form-control{ type: 'text', name: 'name', value: @node.name }
+
+  .form-group
+    %label.control-label Item
+    %select.form-control.selectpicker{name: 'item_id'}
+      %option{value: null}= "None"
+      - @items.each (item) ->
+        %option{value: item.id, 'data-content': "<img src='#{asset_path('items/' + item.image)}'> <b>#{item.name}</b>"}= item.name
+
+  .form-separator
+    %h4 Use item
+
+  .form-group
+    %label.control-label Story
+    %textarea.form-control{ type: 'text', name: 'use_item[description]'}= @node.events.use_item.description
+
+  %div{'data-action-box' => true, 'data-action-box-namespace' => 'use_item'}
+
+  .form-separator
+    %h4 Already used item
+
+  .form-group
+    %label.control-label Story
+    %textarea.form-control{ type: 'text', name: 'already_used_item[description]'}= @node.events.already_used_item.description
+
+  %div{'data-action-box' => true, 'data-action-box-namespace' => 'already_used_item'}
+
+  .form-separator
+    %h4 No item
+
+  .form-group
+    %label.control-label Story
+    %textarea.form-control{ type: 'text', name: 'no_item[description]'}= @node.events.no_item.description
+
+  %div{'data-action-box' => true, 'data-action-box-namespace' => 'no_item'}

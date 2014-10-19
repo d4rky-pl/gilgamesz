@@ -1,2 +1,7 @@
-.page-header
-  %h3 Game Over (#{@id})
+%form.node-edit
+  .form-group
+    %label.control-label Name
+    %input.form-control{ type: 'text', name: 'name', value: @node.name }
+  .form-group
+    %label.control-label Story
+    %textarea.form-control{ type: 'text', name: 'description'}= @node.description

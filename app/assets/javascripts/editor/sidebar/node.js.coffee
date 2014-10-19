@@ -2,9 +2,10 @@ class Editor.Sidebar.Node extends Editor.Sidebar.Base
   template: 'node/passage'
   current: null
 
-  constructor: (editor, container) ->
+  constructor: (@editor, @container) ->
     super
     @current = @editor.adventure.nodes[0]
+    @serializers = new Editor.Sidebar.Node.Serializers(@editor)
 
   createNewNode: (type) ->
     obj = $.extend(true, {}, Editor.Sidebar.Node.Templates[type])
@@ -13,13 +14,17 @@ class Editor.Sidebar.Node extends Editor.Sidebar.Base
     setNode(obj.id)
 
   setNode: (id) ->
-    node_index = @_nodeIndex(id)
-    @current = @editor.adventure.nodes[node_index]
+    @current_index = @_nodeIndex(id)
+    @current = @editor.adventure.nodes[@current_index]
     @render()
+
+  updateNodeFromForm: (obj) ->
+    @editor.adventure.nodes[@current_index] = @serializers[@current.type](@current, obj)
 
   context: ->
     {
-    id: @current.id
+      node: @current
+      items: @editor.adventure.items
     }
 
   beforeRender: ->
@@ -27,9 +32,12 @@ class Editor.Sidebar.Node extends Editor.Sidebar.Base
 
   afterRender: ->
     self = this
-    $('form', @container).submit (e) ->
-      e.preventDefault()
-      self.current = Editor.Sidebar.Node.Serializers[self.current.type]($(this).serializeJSON())
+    @form = $('form', @container)
+
+    $(':input', @container).change =>
+      @updateNodeFromForm(@form.serializeJSON())
+
+    $('.selectpicker', @container).selectpicker()
 
   _nodeIndex: (id) ->
     node_index = -1

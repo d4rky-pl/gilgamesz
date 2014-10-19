@@ -1,9 +1,8 @@
 class Editor.Sidebar.Base
   template: ''
 
-  constructor: (editor, container) ->
-    @editor = editor
-    @container = $(container)
+  constructor: (@editor, @container) ->
+    @container = $(@container)
 
   render: ->
     @beforeRender()
