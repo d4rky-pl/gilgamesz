@@ -9,7 +9,7 @@ class AdventuresController < ApplicationController
   end
 
   def new
-    @adventure = Adventure.new
+    @adventure = Adventure.new(content: Adventure::EMPTY_JSON)
     set_gon_attributes
     render action: 'edit'
   end

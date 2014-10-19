@@ -14,6 +14,7 @@
 #= require utils
 #= require tether
 #= require shepherd
+#= require bootstrap-wysihtml5
 
 #= require_tree ./templates
 #= require index

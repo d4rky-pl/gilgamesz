@@ -20,6 +20,7 @@ gem 'haml_coffee_assets'
 gem 'execjs'
 gem 'will_paginate-bootstrap'
 gem 'assets_js'
+gem 'bootstrap-wysihtml5-rails', github: 'Nerian/bootstrap-wysihtml5-rails'
 gem 'dropzonejs-rails'
 
 group :development do

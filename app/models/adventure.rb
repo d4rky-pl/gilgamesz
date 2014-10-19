@@ -1,12 +1,31 @@
 class Adventure < ActiveRecord::Base
   enum game_type: %w( fantasy sci-fi detective )
 
+  EMPTY_JSON = {
+      nodes: [
+                {
+                    id: 'root',
+                    type: 'passage',
+                    name: 'First Room',
+                    description: 'This is where your story goes. You can write anything you would like.',
+                    actions: []
+                }
+             ],
+      items: [],
+      settings: {
+                 name:        'Your Own Game',
+                 description: '',
+                 game_type:   'fantasy'
+             }
+  }
+
   before_create :generate_token
   before_save :content_will_change!
 
   def generate_token
     self.token = SecureRandom.hex(10)
   end
+
 end
 
 # == Schema Information

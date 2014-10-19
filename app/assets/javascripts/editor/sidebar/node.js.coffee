@@ -14,6 +14,7 @@ class Editor.Sidebar.Node extends Editor.Sidebar.Base
 
   updateNodeFromForm: (obj) ->
     @editor.adventure.nodes[@current_index] = @serializers[@current.type](@current, obj)
+    @editor.graph.rerender()
 
   context: ->
     {
@@ -41,3 +42,8 @@ class Editor.Sidebar.Node extends Editor.Sidebar.Base
       self.editor.removeNode(self.current.id)
 
     $('.selectpicker', @container).selectpicker()
+    $('textarea', @container).wysihtml5
+      'toolbar':
+        'font-styles': false
+        'lists': false
+        'size': 'sm'

@@ -6,7 +6,7 @@ class Editor.Sidebar.Node.Actions
     @actions().push(
       id: "action-#{uuid.v4()}"
       node_id: node.id
-      description: "<p>Your text goes here</p>"
+      description: "<p>This is where you put the description of the decision the player can make.</p>"
     )
     @editor.graph.rerender()
     @render()
@@ -43,18 +43,22 @@ class Editor.Sidebar.Node.Actions
     ).on("shown.bs.modal", (e) ->
       $this = $(this)
 
-      $('button[data-new-node]').click ->
+      $('button[data-new-node]', $this).click ->
         type = $(this).data('new-node')
 
-        node = self.editor.createNode(type)
+        node = self.editor.createNode(type, self.node.id)
         self.createAction(node)
         $this.modal('hide')
 
-      $('button[existing-node').click ->
+      $('button[data-existing-node]', $this).click ->
         self.editor.graph.selectionMode (node_id) ->
-          node = self.editor.getNode(node_id)
-          self.createAction(node)
-          $this.modal('hide')
+          if self.node.id == node_id
+            bootbox.alert("You cannot create this kind of loop :)")
+          else
+            node = self.editor.getNode(node_id)
+            self.createAction(node)
+        $this.modal('hide')
+
     )
 
   render: ->
@@ -73,7 +77,7 @@ class Editor.Sidebar.Node.Actions
 
     $('[data-action="set-node"]').click (e) ->
       e.preventDefault()
-      self.editor.sidebar.setNode($(this).data('action-node-id'))
+      self.editor.selectNode($(this).data('action-node-id'))
 
     $('button', @container).click (e) ->
       e.preventDefault()

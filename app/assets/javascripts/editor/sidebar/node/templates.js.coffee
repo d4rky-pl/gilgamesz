@@ -14,7 +14,7 @@ Editor.Sidebar.Node.Templates = {
         description: 'You have found an item.'
         actions: []
       },
-      already_have_item: {
+      already_has_item: {
         description: 'You already have an item.'
         actions: []
       }
