@@ -1,10 +1,5 @@
 source 'https://rubygems.org'
 
-group :production do
-  gem 'thin'
-  gem 'rails_12factor'
-end
-
 gem 'rails', '4.1.6'
 gem 'pg'
 gem 'sass-rails', '~> 4.0.3'
@@ -32,11 +27,8 @@ group :development do
   gem 'pry-nav'
   gem 'better_errors'
   gem 'binding_of_caller'
-
-  gem 'puma'
 end
 
-group :test do
-  
-end
-
+gem 'mina'
+gem 'puma'
+gem 'mina-puma', require: false, github: 'growthrepublic/mina-puma'
